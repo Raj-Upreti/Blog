@@ -1,21 +1,11 @@
 <template>
-    <div>
-        <!-- Navbar Starts -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="">
-                <a class="navbar-brand fs-1" href="#">Blogs</a>
-            </div>
-        </nav>
-        <!-- Navbar Ends -->
-
-
+    <div class="py-5">
         <div class="p-3">
-            <div class="text-end">
-                <router-link to="/addblog">
-                    <button class="btn btn-primary btn-lg rounded-3">Add Blog</button>
+            <div class="mb-5 pb-5">
+                <router-link to="/dashboard/addblog">
+                    <button class="btn btn-primary fw-bold btn-lg rounded-4">Add Blog</button>
                 </router-link>
             </div>
-            <h2 class="fw-bold text-center py-3"> Post Table</h2>
             <PostTable />
         </div>
     </div>

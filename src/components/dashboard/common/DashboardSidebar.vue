@@ -1,49 +1,54 @@
 <template>
     <div>
         <!-- DashboardSidebar begins -->
-        <img class="py-3 px-4"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYgQXpEhtQfGdzH8_2XH-VPDzs3g7VmmP8xgDxRntZlvV3wUdz2sJgdDOTHS9MwmU78KI&usqp=CAU"
-            alt="" style="object-fit:cover; width:100%; height: 6rem;">
-        <div class="" style="padding-top:3rem;">
-            <div class="fw-bold">
+        <div class="text-center">
+            <img class="pt-3 px-4"
+                src="https://static.vecteezy.com/system/resources/previews/001/192/065/original/circle-logo-turbine-png.png"
+                style="width:80%">
+        </div>
+        <div class="menu" style="padding-top:3rem;">
+            <div class="fw-bold menu-list">
 
-                <div class="py-5 px-3">
-                    <router-link class="d-flex" style="text-decoration:none;" to='/dashboard'>
+                <div class="py-3 pe-3 active">
+                    <router-link class="d-flex align-items-center" to='/dashboard'>
+                        <i class="fa-solid fa-house text-white me-3"></i>
                         <p class="text-white">Home</p>
                     </router-link>
                 </div>
 
-                <div class="py-5 px-3">
+                <div class="py-3 pe-3">
 
-                    <router-link class="d-flex" style="text-decoration:none;" to='/dashboard/postcollection'>
+                    <router-link class="d-flex align-items-center" to='/dashboard/postcollection'>
+                        <i class="fa-solid fa-file text-white me-3"></i>
                         <p class="text-white">Posts</p>
                     </router-link>
                 </div>
 
-                <div class="py-5 px-3">
+                <div class="py-3 pe-3">
 
-                    <router-link style="text-decoration:none;" to='/dashboard/categorycollection'>
+                    <router-link class="d-flex align-items-center" to='/dashboard/categorycollection'>
+                        <i class="fa-solid fa-layer-group text-white me-3"></i>
                         <p class="text-white">Category</p>
+                    </router-link>
+                </div>
+
+                <div class="py-3 pe-3">
+                    <router-link class="d-flex align-items-center" to='/'>
+                        <i class="fa-solid fa-eye text-white me-3"></i>
+                        <p class="text-white">Visit Blog</p>
                     </router-link>
                 </div>
 
             </div>
         </div>
+
         <!-- <DashboardSidebar /> -->
     </div>
 </template>
 
 
 <script setup>
-// import { link } from 'fs';
 
-// const activePage= window.location.pathname;
-// const navLinks= document.querySelectorAll('p').
-//     forEach(link => {
-//         if(link.href.includes(`${activePage}`)){
-//             link.classList.add('active');
-//         }
-//     })
 </script>
 
 
@@ -51,4 +56,15 @@
 p {
     margin-bottom: 0 !important;
 }
-</style>
+
+.active {
+    background: var(--mdb-gray-200);
+}
+
+.active * {
+    color: #0f4c81 !important;
+}
+
+.menu .menu-list div {
+    padding-left: 2rem !important;
+}</style>

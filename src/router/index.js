@@ -13,6 +13,7 @@ import PostCollection from '../components/dashboard/PostCollection.vue';
 import CategoryCollection from '../components/dashboard/CategoryCollection.vue';
 import DashboardHome from '../components/dashboard/DashboardHome.vue';
 import MainPage from '../components/blog/MainPage.vue';
+import Dashboard from '../view/Dashboard.vue'
 
 
 const router = createRouter({
@@ -33,31 +34,17 @@ const router = createRouter({
         {
             path: '/dashboard', 
             name: 'dashboard-home', 
-            component: () => import('../view/Dashboard.vue'), 
+            component: Dashboard, 
             children: [
 
-                {
-                    path:'',
-                    name:'dashboardhome',
-                    component:DashboardHome
-                },
-
-
-                {
-                    path: 'postcollection',
-                    name: 'PostCollection',
-                    component: PostCollection // child component
-                  },
-                  {
-                    path: 'categorycollection',
-                    name: 'CategoryCollection',
-                    component: CategoryCollection // child component
-                  }
-
+                { path:'', name:'dashboardhome', component:DashboardHome },
+                { path: 'postcollection', name: 'PostCollection', component: PostCollection},
+                { path: 'categorycollection', name: 'CategoryCollection',component: CategoryCollection},
+                { path: 'addblog', name:'addblog', component: AddBlog},
+                { path: 'blogstatus', name: 'blogstatus', component: BlogStatus },
             ]
         },
-        { path: '/addblog', name: 'addblog', component: AddBlog },
-        { path: '/blogstatus', name: 'blogstatus', component: BlogStatus },
+          
     ]
 })
 

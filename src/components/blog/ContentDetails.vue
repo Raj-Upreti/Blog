@@ -48,15 +48,16 @@
                             inventore, dolor sed laborum voluptatem nisi, aperiam unde a error ad molestias!</p>
                     </div>
                 </div>
-                <div class="col-md-4 p-4 position-sticky" style="top:1rem; height:0rem;">
-                    <h5>More from Pasal</h5>
-                    <div class="row py-4  align-items-center" v-for="(blog, index) in blogs" :key="index">
-                        <div class="col-md-8 ">
-                            <p class="mb-2">{{ blog.author }}</p>
+                <div class="col-md-4 p-4 position-sticky" style="top:6rem; height:0rem;">
+                    <div class="h5 fw-bold">More from Pasal</div>
+                    <hr>
+                    <div class="row pb-3 align-items-center" v-for="(blog, index) in blogs" :key="index">
+                        <div class="col-md-8">
+                            <!-- <p class="mb-2">{{ blog.author }}</p> -->
                             <h6 class="fw-bold">{{ blog.title }}</h6>
                         </div>
                         <div class="col-md-4">
-                            <img :src="blog.image" alt="" style="width:80%; object-fit:contain; height:5rem;">
+                            <img :src="blog.image" alt="" style="width:80%; object-fit:cover; height:5rem;">
                         </div>
                     </div>
                 </div>

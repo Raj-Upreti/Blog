@@ -1,19 +1,22 @@
 <template>
     <div class="container-fluid py-4 border-bottom">
-        <h5 class="px-5 fw-bold"> <font-awesome-icon icon="fa-light fa-arrow-trend-up" />Trending on Pasal</h5>
-        <div class="row px-5 py-4" >
+        <div class="px-5 h1 fw-bold"> <font-awesome-icon icon="fa-light fa-arrow-trend-up" />
+            Trending on Pasal
+        </div>
+        <div class="row px-5 py-4">
             <div class="col-lg-4 col-md-6" v-for="(topic, index) in topics" :key="index">
                 <div class="row py-2 align-items-center">
                     <div class="col-md-4">
-                        <img :src="topic.image" alt="" style="width:100%; object-fit:contain; height:6rem;">
+                        <img :src="topic.image" class="rounded-5" alt="" style="width:100%; object-fit:cover; height:6rem;">
                     </div>
                     <div class="col-md-8">
-                        <p class="mb-2">{{ topic.author }}</p>
-                        <h5 class="fw-bold">{{ topic.title }}</h5>
-                        <div class="d-flex" style="font-size:0.8rem;">
-                            <p>{{topic.readtime}} read</p>
-                            <p class="mx-3  date">{{topic.date}}</p>
+                        <!-- <p class="mb-2">{{ topic.author }}</p> -->
+                        <p class="h5 fw-bold">{{ topic.title }}</p>
+                        <div class="d-flex text-muted" style="font-size:0.8rem;">
+                            <p>{{ topic.readtime }} read</p>
+                            <p class="date">{{ topic.date }}</p>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -71,7 +74,8 @@ const topics = [
 
 
 <style scoped>
-.date::before{
+.date::before {
     content: "\2022";
+    padding: 0rem 0.5rem;
 }
 </style>

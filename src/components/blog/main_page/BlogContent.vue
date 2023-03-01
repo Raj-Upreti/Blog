@@ -5,32 +5,37 @@
 
                 <h6 class="fw-bold">Discover more of what matters to you</h6>
 
-                <div class="py-4 border-bottom ">
+                <div class="pb-4 pt-2 border-bottom ">
                     <!-- Blog Category Menu Component -->
                     <BlogCategoryMenu />
                 </div>
 
                 <div class="py-3">
-                    <router-link to="help"><button class="btn btn-sm">Help</button></router-link>
-                    <button class="btn btn-sm">Status</button>
-                    <button class="btn btn-sm">Writing</button>
-                    <button class="btn btn-sm">Blog</button>
-                    <button class="btn btn-sm">Careers</button>
-                    <button class="btn btn-sm">Privacy</button>
-                    <button class="btn btn-sm">Terms</button>
-                    <button class="btn btn-sm">About</button>
-                    <button class="btn btn-sm">Text to speech</button>
+                    <a class="text-muted me-3 mb-2">Status</a>
+                    <a class="text-muted me-3 mb-2">Writing</a>
+                    <a class="text-muted me-3 mb-2">Status</a>
+                    <a class="text-muted me-3 mb-2">Status</a>
+                    <a class="text-muted me-3 mb-2">Status</a>
+
                 </div>
 
-                <div>
-                    <img src="https://graphicdesignjunction.com/wp-content/uploads/2020/12/best-logos-2020-4.jpg" alt=""
-                        style="width:100%;">
-                </div>
+                <!-- <div class="py-3">
+                    <router-link to="help"><button class="btn btn-sm shadow-0 border me-2 mb-2">Help</button></router-link>
+                    
+                    <button class="btn btn-sm shadow-0 border me-2 mb-2">Writing</button>
+                    <button class="btn btn-sm shadow-0 border me-2 mb-2">Blog</button>
+                    <button class="btn btn-sm shadow-0 border me-2 mb-2">Careers</button>
+                    <button class="btn btn-sm shadow-0 border me-2 mb-2">Privacy</button>
+                    <button class="btn btn-sm shadow-0 border me-2 mb-2">Terms</button>
+                    <button class="btn btn-sm shadow-0 border me-2 mb-2">About</button>
+                    <button class="btn btn-sm shadow-0 border me-2 mb-2">Text to speech</button>
+                </div> -->
+
             </div>
 
             <div class="col-md-8 px-5 py-3">
                 <!-- Blog Home List Component -->
-                <BlogHomeList />
+                <BlogHomeList post="home" />
             </div>
         </div>
     </div>

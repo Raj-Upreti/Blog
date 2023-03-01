@@ -1,35 +1,107 @@
 <template>
-  
-      <div>
-        <h3 class="fw-bold">Lets view our Blog traffic here</h3>
-        <Bar id="my-chart-id" :options="chartOptions" :data="chartData" />
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-lg-6 py-5 my-5 px-5">
+        <form>
+          <div class="">
+            <label class="form-label" for="form12">Category Name <span class="text-danger">*</span></label>
+            <input type="text" id="form12" class="form-control" v-model="category" required />
+
+            <div class="mt-3 text-end">
+              <button class="btn btn-sm btn-primary" @click.prevent="updateStore">Add Category</button>
+            </div>
+          </div>
+        </form>
+
+       
+
       </div>
 
+      <div class="col-lg-6 vh-100 py-5" style="background-color: #f1f3f4;">
+        <div
+            Dividerlass="h4 pb-5">Categories</div>
+        <div class="row">
+          <div class="col-lg-6 justify-content-between py-2" v-for="(category, index) in categoryList" :key="index">
+            <div class="card">
+              <div class="card-body py-1 px-3 d-flex justify-content-between">
+                <div class="small fw-bold">{{ category.title }}</div>
+                <!-- <a href="#" class="btn  rounded-3 btn-primary">View All</a> -->
+                <a class="text-danger nav-link">X</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
 </template>
 
 
-<script>
-import { Bar } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-import DashboardSidebar from './common/DashboardSidebar.vue'
+<script setup>
+import { ref } from 'vue';
+import { useblogCategory } from '../../store/blogCategory';
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
-export default {
-  name: 'BarChart',
-  components: { Bar, DashboardSidebar },
-  data() {
-    return {
-      chartData: {
-        labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        datasets: [{ data: [40, 200, 120, 80, 150, 30, 400] }]
-      },
-      chartOptions: {
-        responsive: true
-      }
-    }
+const categoryStore = useblogCategory();
+
+const category = ref('');
+
+  
+function updateStore() {
+  let categoryData = {
+    category: category.value
   }
+
+  categoryStore.addCategory(categoryData);
+
 }
+
+
+const categoryList = [
+  { title: 'Programming', description: 'It contains various topics under programming.' },
+
+  { title: 'Writting', description: 'It contains various blogs under category Writting.' },
+
+  { title: 'Data Science', description: 'Here you can find numbers of blogs of data Science field.' },
+
+  { title: 'Politics', description: 'Enjoy number of political blogs from here.' },
+
+  { title: 'Productivity', description: 'Numbers of blog under productivity can be found here.' },
+
+  { title: 'Technology', description: 'Blogs related to latest technology can be found here' },
+
+  { title: 'Relationship', description: 'Here you can found blogs related to relationship' },
+
+  { title: 'Machine Learning', description: 'Machine Learning materials can found here' },
+
+  { title: 'Self Improvement', description: 'Self Improvement articles can be found here.' },
+]
+
+
 </script>
 
-<style></style>
+<style scoped>
+input {
+  height: 4rem;
+  border: 3px solid #f1f1f1 !important;
+  border-radius: 0.7rem;
+  padding: 0.5rem 1rem !important;
+  font-size: 1.2rem !important;
+}
+
+input:focus:hover,
+input:focus {
+  border: 3px solid #084e88 !important;
+}
+
+input:hover {
+  border: 3px solid #ccc !important;
+  transition: 0.7s;
+}
+
+label {
+  font-weight: 800;
+}</style>

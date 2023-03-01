@@ -1,6 +1,6 @@
 <template>
-    <div class="container-fluid">
-        <div class="container">
+    <div class="container">
+        <div class="p-5">
             <!-- Counts records -->
             <div class="row py-2">
                 <div class="col-md-3" v-for="(data, index) in cardData" :key="index">
@@ -18,99 +18,56 @@
                 </div>
             </div>
 
-            <!-- Visitors Graph and top shared starts -->
-            <div class="row px-4 pt-5 justify-content-between">
-                <div class="col-md-9 py-5">
-                    <img class="" src="https://www.rankranger.com/www-img/web/docs/ver4/traffic-sources-bar-graph.jpg"
-                        alt="" style="width:95%;">
+            <!-- Visitors Graph  -->
+            <div class="row pt-3 justify-content-between">
+
+
+                <div class="col-md-9 py-5 pe-5">
+                    <!-- <p class="h5 fw-bold">visitors Graph</p> -->
+                    <WebChart />
+
+                    <div class="py-5 my-5">
+                        <!-- Recent posts table starts -->
+                        <h5 class=" py-2">Recent Articles</h5>
+
+                        <!-- DataTable Satrts -->
+                        <DataTable class="display" :columns="column" :data="data" :options="options" ref="table">
+                        </DataTable>
+
+                    </div>
+                    <!-- Recent posts table ends -->
                 </div>
 
-                <div class="col-md-3 pt-5">
+
+                <!-- Visitor graph ends -->
+
+                <div class="col-md-3 mt-4 pt-5">
 
                     <!-- Devices type -->
-                    <div class="card text-center px-2 rounded-5" style="background-color:whitesmoke;">
+                    <div class="card text-center px-2 rounded-3" style="background-color:whitesmoke;">
                         <h5 class="fw-bold py-2">Used Devices</h5>
                         <img class="py-2" src="../../assets/pie-chart.png" alt="" style="object-fit:cover;">
                         <h6>Mobile-76.9%</h6>
                         <h6>Desktop-23.1%</h6>
                     </div>
-                </div>
 
-                <!-- Visitor graph and top shared ends -->
-            </div>
-
-            <div class="row px-4 py-5">
-
-                <div class="col-md-9" style="padding-right:0.5rem;">
-
-                    <!-- Recent posts table starts -->
-                    <h5 class="px-3 py-2">Recent Articles</h5>
-
-                    <!-- tables using vuetify -->
-                    <VTable class="text-start" style="width:95%;">
-
-                        <!-- table head starts  -->
-                        <thead>
-                            <tr>
-                                <th class="text-start">
-                                    SN
-                                </th>
-
-                                <th class="text-start">
-                                    Date
-                                </th>
-
-                                <th class="text-start">
-                                    Title
-                                </th>
-
-                                <th class="text-start">
-                                    Category
-                                </th>
-
-                                <th class="text-start">
-                                    Author
-                                </th>
-                            </tr>
-                        </thead>
-                        <!-- table head ends -->
-
-
-                        <!-- table body starts -->
-                        <tbody>
-
-                            <!-- table row starts -->
-                            <tr v-for="(data, index) in tableData" :key="index">
-                                <td>{{ data.sn }}</td>
-                                <td>{{ data.date }}</td>
-                                <td>{{ data.title }}</td>
-                                <td>{{ data.category }}</td>
-                                <td>{{ data.author }}</td>
-                            </tr>
-                            <!-- table row ends -->
-
-                        </tbody>
-                        <!-- table body ends -->
-
-                    </VTable>
-
-                </div>
-                <!-- Recent posts table ends -->
-
-                <div class="col-md-3 py-5 text-center">
-                    <div class="card rounded-5 " style="background-color:whitesmoke;">
-                        <h4 class="py-2 fw-bold">Social Media Shared</h4>
-                        <div class="d-flex px-5 text-center" v-for="(data, index) in socialMediaData" :key="index">
-                            <img class="" :src="data.image" alt="" style="width:13%;height:10%;">
-                            <p class="px-4">{{ data.name }}</p>
-                            <p class="">{{ data.number }}</p>
-                        </div>
+                    <div class="py-5">
+                    
+                            <div class="card rounded-3 py-3 " style="background-color:whitesmoke;">
+                              <div class="card-body">
+                                <h4 class=" fw-bold">Social Media Shared</h4>
+                                <div class="d-flex py-2 text-center" v-for="(data, index) in socialMediaData" :key="index">
+                                    <img class="" :src="data.image" alt="" style="width:13%;height:8%;">
+                                    <p class="px-2">{{ data.name }}</p>
+                                    <p class="">{{ data.number }}</p>
+                                </div>
+                            </div>  
+                            </div>
 
                     </div>
                 </div>
-
-
             </div>
+
         </div>
 
     </div>
@@ -119,6 +76,43 @@
   
   
 <script setup>
+
+import { ref } from 'vue';
+import WebChart from '../dashboard/common/WebChart.vue';
+
+import DataTable from 'datatables.net-vue3';
+import DataTablesLib from 'datatables.net';
+import 'datatables.net-select';
+DataTable.use(DataTablesLib);
+
+let dt;
+const table = ref();
+
+const column = [
+    { title: "SN", data: "Serial_number" },
+    { title: "Published Date", data: "date" },
+    { title: "Title", data: "title" },
+    { title: "Category", data: "category" },
+    { title: "Author", data: "author" },
+];
+
+const options = {
+    dom: "Blftipr", select: true, ordering: false, info: true
+};
+
+const data = [
+    { Serial_number: '1', date: '2023-1-2', title: 'Yoga', category: 'Self Improvement', author: 'Dr. Ramanand' },
+    { Serial_number: '2', date: '2023-1-21', title: 'Artificial Intelligence', category: 'AI', author: 'Mr.Alex' },
+    { Serial_number: '3', date: '2023-1-25', title: 'Spiritual Life', category: 'Self Improvement', author: 'SaadGuru' },
+    { Serial_number: '4', date: '2023-1-29', title: 'Family life', category: 'Family', author: 'Rupesh' },
+    { Serial_number: '5', date: '2023-2-1', title: 'About Nepal', category: 'Nation', author: 'Balen' },
+    { Serial_number: '6', date: '2023-2-10', title: 'Coding in Js', category: 'Programming', author: 'Mosh' },
+    { Serial_number: '7', date: '2023-2-14', title: 'Good Writing', category: 'Writing', author: 'Arjun' },
+    { Serial_number: '8', date: '2023-2-18', title: 'Coding Nicely', category: 'Programming', author: 'Harry' },
+    { Serial_number: '9', date: '2023-2--20', title: 'Politics Influence', category: 'Politics', author: 'Rajan' },
+    { Serial_number: '10', date: '2023-2-24', title: 'Introduction to ML', category: 'ML', author: 'Er.Carlo' },
+    { Serial_number: '11', date: '2023-2-28', title: 'Self Charging Battery', category: 'Technology', author: 'Harvely' },
+]
 
 const cardData = [
     {
@@ -214,6 +208,12 @@ const tableData = [
 ]
 
 </script>
+
+<style>
+@import "datatables.net-buttons-dt";
+@import "datatables.net-select-dt";
+@import 'datatables.net-dt';
+</style>
   
   
   

@@ -3,10 +3,11 @@ import App from './App.vue';
 import router from './router';
 import { createPinia } from 'pinia';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './style.css';
 
-import 'vuetify/styles'
+// import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
@@ -16,11 +17,21 @@ const vuetify = createVuetify({
   directives,
 })
 
-const Pinia= createPinia();
+
+// vue-title (tooltip)
+import vTitle from 'vuejs-title';
+
+
+const Pinia = createPinia();
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 
 
 createApp(App)
-.use(vuetify)
-.use(router)
-.use(Pinia)
-.mount('#app')
+  .use(router)
+  .use(Pinia)
+  .use(vTitle)
+  .mount('#app')

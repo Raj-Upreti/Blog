@@ -5,11 +5,12 @@
             <form>
                 <div class="form-group">
                     <label class="fs-5" for="search">Search Blogs</label> <br>
-                    <input class="rounded-3" type="search" placeholder="search here.." style="width:25%;">
+                    <input class="" type="search" placeholder="search here.." style="width:25%;">
                     <button type="search" class="mx-3 btn btn-sm btn-success rounded-3">Search</button>
-                    <router-link to="/addblog">
-                        <input type="button" class="btn btn-primary mx-5" value="Add new Blog">
+                    <router-link to="/dashboard/addblog">
+                        <input type="button" class="btn text-white btn-primary mx-5" value="Add new Blog">
                     </router-link>
+
                 </div>
 
                 <div class="row py-5">
@@ -19,10 +20,10 @@
                         <button class="btn btn-light mx-3">Draft</button>
                     </div>
                 </div>
-                
+
                 <table class="table table-bordered mx-3">
                     <thead>
-                        <tr >
+                        <tr>
                             <th>Title</th>
                             <th>Status</th>
                             <th>Date</th>
@@ -44,7 +45,6 @@
                     </tbody>
 
                 </table>
-
             </form>
         </div>
     </div>
@@ -56,6 +56,4 @@
 </script>
 
 
-<style>
-
-</style>
+<style></style>
