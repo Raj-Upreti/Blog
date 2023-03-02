@@ -8,7 +8,6 @@ import Archive from '../components/blog/Archive.vue';
 import Ourstory from '../components/blog/Ourstory.vue';
 import ContentDetails from '../components/blog/ContentDetails.vue';
 import AddBlog from '../components/dashboard/AddBlog.vue';
-import BlogStatus from '../components/dashboard/BlogStatus.vue';
 import PostCollection from '../components/dashboard/PostCollection.vue';
 import CategoryCollection from '../components/dashboard/CategoryCollection.vue';
 import DashboardHome from '../components/dashboard/DashboardHome.vue';
@@ -41,7 +40,6 @@ const router = createRouter({
                 { path: 'postcollection', name: 'PostCollection', component: PostCollection},
                 { path: 'categorycollection', name: 'CategoryCollection',component: CategoryCollection},
                 { path: 'addblog', name:'addblog', component: AddBlog},
-                { path: 'blogstatus', name: 'blogstatus', component: BlogStatus },
             ]
         },
           

@@ -5,7 +5,7 @@ import { createPinia } from 'pinia';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-import './style.css';
+
 
 // import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
@@ -21,6 +21,7 @@ const vuetify = createVuetify({
 // vue-title (tooltip)
 import vTitle from 'vuejs-title';
 
+import './style.css';
 
 const Pinia = createPinia();
 

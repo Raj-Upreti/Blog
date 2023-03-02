@@ -5,27 +5,29 @@
                 <div class="px-4 py-5">
                     <h4 class="fw-bold">Blog Post</h4>
 
-                    <div class="py-3">
-                        <label for="">Enter Title <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control form-input" v-model="title">
-                    </div>
+                    <form action="" class="needs-validation" novalidate>
+
+                        <div class="py-3">
+                            <label for="title" class="form-label">Enter Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-input" name="title" v-model="title" required>
+                        </div>
 
 
-                    <div class="py-3">
-                        <label for="">Blog Content <span class="text-danger">*</span></label>
-                        <QuillEditor ref="content" style="height:33rem;" />
-                    </div>
+                        <div for="content" class="py-3">
+                            <label class="form-label">Blog Content <span class="text-danger">*</span></label>
+                            <QuillEditor ref="content" style="height:33rem;" name="content" required />
+                        </div>
+
+                    </form>
                 </div>
             </div>
 
 
             <div class="col-lg-3 py-5 px-4" style="background-color: rgb(241, 243, 244);">
-                <form>
-
-
+                <form class="needs-validation" novalidate>
                     <div>
                         <div>
-                            <label  for="form12">Blog Link <span class="text-danger">*</span></label>
+                            <label for="link" class="form-label">Blog Link <span class="text-danger">*</span></label>
 
                             <div class="d-flex">
                                 <div class="text-decoration-underline text-primary text-truncate"
@@ -44,13 +46,13 @@
 
                         <div>
                             <label for="category">Add Category <span class="text-danger">*</span></label> <br>
-                            <input type="text" class="form-control fomr-input-small" v-model="category">
+                            <input type="text" name="category" class="form-control fomr-input-small" v-model="category" required>
                         </div>
 
                         <hr>
                         <div>
                             <label for="image">Featured Image</label> <br>
-                            <input type="file" ref="fileInput" accept="image">
+                            <input type="file" ref="fileInput" accept="image" required>
                         </div>
 
 
@@ -63,20 +65,19 @@
 
 
                     <div class="mt-5">
-                        <div class="d-flex w-100 mb-3" >
-                            <button class="btn btn-primary rounded-3 w-100" @click.prevent="updateStore" style="font-size:1rem;">
+                        <div class="d-flex w-100 mb-3">
+                            <button class="btn btn-primary rounded-3 w-100" @click.prevent="updateStore"
+                                style="font-size:1rem;">
                                 Publish Blog
                             </button>
                         </div>
                         <div>
-                            <button class="btn btn-secondary rounded-3 w-100 border border-info"  @click.prevent="updateStore" style="font-size:1rem;">
+                            <button class="btn btn-secondary rounded-3 w-100 border border-info"
+                                @click.prevent="updateStore" style="font-size:1rem;">
                                 Save as Draft
                             </button>
                         </div>
-
                     </div>
-
-
                 </form>
             </div>
         </div>
@@ -86,12 +87,6 @@
 
 <script setup>
 import { ref } from 'vue';
-// import { useRouter } from 'vue-router';
-
-
-
-
-
 
 //Vue Quill registration locally
 import { QuillEditor } from '@vueup/vue-quill';
@@ -101,7 +96,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { usepostStore } from '../../store/postStore';
 import { useblogCategory } from '../../store/blogCategory';
 import router from '../../router';
-// import router from '../../router/index'
+
 
 // const router= router();
 const postStore = usepostStore();
@@ -111,10 +106,9 @@ const categoryStore = useblogCategory();
 //Two way Binding using Ref starts
 const title = ref('');
 const content = ref('');
-const link = ref('');
 const file = ref(null);
 const category = ref('');
-const author = ref('');
+
 
 //For HTML input handling
 const updateFile = () => {
@@ -122,17 +116,24 @@ const updateFile = () => {
 }
 
 function updateStore() {
+
     let data = {
         title: title.value,
         content: content.value.getHTML(),
-        file: updateFile.value,
-        link: link.value,
-        author: author.value
-
+        file: updateFile.value
     }
     let categoryData = {
         category: category.value
     }
+
+    // if(title == "" || content == "" || file == "" || category == "") {
+    //     alert('Please fill the form.');
+    //     return false;
+    // }
+
+    // else{
+        
+    // }
 
     //Two way Binding using Ref ends
 
@@ -144,7 +145,7 @@ function updateStore() {
 
     //saving data in store   
 
-    router.push('/dashboard/blogstatus');
+    router.push('/dashboard/postcollection');
 }
 
 
@@ -174,6 +175,4 @@ function updateStore() {
     border: 1px solid #ccc !important;
     transition: 0.7s;
 }
-
-
 </style> 

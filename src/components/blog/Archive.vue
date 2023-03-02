@@ -1,54 +1,88 @@
-<template> 
-        <!-- Blog Archive Page Main Component -->
-        <div class="container container-fluid p-5">
+<template>
+    <!-- Blog Archive Page Main Component -->
+    <div class="container container-fluid p-5">
 
-            <div>
-                
-            </div>
-            
-            <!-- Column Section Start -->
-            <div class="row py-3">
+        <!-- Column Section Start -->
+        <div class="row py-3">
 
-                <!-- Cloumn Left Start -->
-                <div class="col-md-6">
+            <!-- Cloumn Left Start -->
+            <div class="col-md-7 border-end px-4">
 
-                    <!-- Primary Heading : Category Name -->
-                    <h1>Programming</h1>
-
-                    <!-- Divider -->
-                    <hr>
-
-                    <BlogHomeList post="programming" />
-                </div>
-                <!-- Cloumn Left End -->
-
-                <!-- Cloumn Right Start -->
-                <div class="col-md-4 position-sticky" style="top:2rem; height:0rem;">
-                    <h6 class="fw-bold">Discover related topic</h6>
-                    <div class="py-4">
-                        <RouterLink to="/python"><button class="btn btn-light rounded-4 m-2">Pyhton</button>
-                        </RouterLink>
-                        <button class="btn btn-light rounded-4">Java Script</button>
-                        <button class="btn btn-light rounded-4 mx-2">Software</button>
-                        <button class="btn btn-light rounded-4 mx-2">Web Development</button>
-                        <button class="btn btn-light rounded-4 m-2">AI</button>
-                        <button class="btn btn-light rounded-4">Data Science</button>
-                        <button class="btn btn-light rounded-4 mx-2">Machine Learning</button>
-                        <button class="btn btn-light rounded-4 mx-2">Ruby</button>
-                        <button class="btn btn-light rounded-4">Coding</button>
+                <!-- Primary Heading : Category Name -->
+                <div class="d-flex align-items-center mb-5">
+                    <div class="tag-icon me-2">
+                        <i class="fa-solid fa-tag fs-5"></i>
                     </div>
-                    <img src="https://i.pinimg.com/736x/2a/51/29/2a51299e637a606f3ea038822ecc33a7.jpg" alt=""
-                        style="width:100%; height:">
-
+                    <h2 class="fw-bold h1">Programming</h2>
                 </div>
-                <!-- Cloumn Right End -->
+
+                <BlogHomeList post="programming" />
             </div>
-            <!-- Column Section End -->
+            <!-- Cloumn Left End -->
+
+            <!-- Cloumn Right Start -->
+            <div class="col-md-5 px-4 position-sticky" style="top:6rem; height:0rem;">
+                <div class="py-4 related-topics">
+                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
+                        Python
+                    </button>
+                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
+                        Java Script
+                    </button>
+                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
+                        Software
+                    </button>
+                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
+                        Web Development
+                    </button>
+                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
+                        AI
+                    </button>
+                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
+                        Data Science
+                    </button>
+                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
+                        Machine Learning
+                    </button>
+                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
+                        Ruby
+                    </button>
+                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
+                        Coding
+                    </button>
+                </div>
+
+                <div class="section">
+                    <div class="bg-secondary w-100" style="height:27rem;">
+
+                    </div>
+                </div>
+            </div>
+            <!-- Cloumn Right End -->
         </div>
+        <!-- Column Section End -->
+    </div>
 </template>
 
 
 <style scoped>
+.related-topics button {
+    background-color: rgba(242, 242, 242, 1);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.tag-icon {
+    padding: 1rem;
+    background-color: rgb(237, 237, 237);
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
 .readtime::before,
 .readtime::after {
     content: "\2022";

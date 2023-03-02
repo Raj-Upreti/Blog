@@ -1,7 +1,7 @@
-<template>
-    <div>
+<!-- <template> -->
+    <!-- <div> -->
         <!-- DashboardSidebar begins -->
-        <div class="text-center">
+        <!-- <div class="text-center">
             <img class="pt-3 px-4"
                 src="https://static.vecteezy.com/system/resources/previews/001/192/065/original/circle-logo-turbine-png.png"
                 style="width:80%">
@@ -9,30 +9,28 @@
         <div class="menu" style="padding-top:3rem;">
             <div class="fw-bold menu-list">
 
-                <div class="py-3 pe-3 active">
+                <div class="py-3 pe-3 nav-item  active" @click="setactiveNavItem">
                     <router-link class="d-flex align-items-center" to='/dashboard'>
                         <i class="fa-solid fa-house text-white me-3"></i>
-                        <p class="text-white">Home</p>
+                        <p class="text-white ">Home</p>
                     </router-link>
                 </div>
 
-                <div class="py-3 pe-3">
-
+                <div class="py-3 pe-3 nav-item " @click="setactiveNavItem">
                     <router-link class="d-flex align-items-center" to='/dashboard/postcollection'>
                         <i class="fa-solid fa-file text-white me-3"></i>
-                        <p class="text-white">Posts</p>
+                        <p class="text-white" >Posts</p>
                     </router-link>
                 </div>
 
-                <div class="py-3 pe-3">
-
+                <div class="py-3 pe-3 nav-item " @click="setactiveNavItem">
                     <router-link class="d-flex align-items-center" to='/dashboard/categorycollection'>
                         <i class="fa-solid fa-layer-group text-white me-3"></i>
-                        <p class="text-white">Category</p>
+                        <p class="text-white" >Category</p>
                     </router-link>
                 </div>
 
-                <div class="py-3 pe-3">
+                <div class="py-3 pe-3 nav-item" @click="activeNavItem">
                     <router-link class="d-flex align-items-center" to='/'>
                         <i class="fa-solid fa-eye text-white me-3"></i>
                         <p class="text-white">Visit Blog</p>
@@ -40,19 +38,19 @@
                 </div>
 
             </div>
-        </div>
+        </div> -->
 
         <!-- <DashboardSidebar /> -->
-    </div>
-</template>
+    <!-- </div> -->
+<!-- </template> -->
 
 
-<script setup>
+<!-- <script setup>
 
-</script>
+</script> -->
 
 
-<style>
+<!-- <style>
 p {
     margin-bottom: 0 !important;
 }
@@ -67,4 +65,96 @@ p {
 
 .menu .menu-list div {
     padding-left: 2rem !important;
-}</style>
+}</style> -->
+
+
+<template>
+    <div>
+      <!-- DashboardSidebar begins -->
+      <div class="text-center">
+        <img
+          class="pt-3 px-4"
+          src="https://static.vecteezy.com/system/resources/previews/001/192/065/original/circle-logo-turbine-png.png"
+          style="width: 80%"
+        />
+      </div>
+      <div class="menu" style="padding-top: 3rem;">
+        <div class="fw-bold menu-list">
+          <div
+            class="py-3 pe-3 nav-item"
+            :class="{ active: activeNavItem === 'home' }"
+            @click="setactiveNavItem('home')"
+          >
+            <router-link class="d-flex align-items-center" to="/dashboard">
+              <i class="fa-solid fa-house text-white me-3"></i>
+              <p class="text-white">Home</p>
+            </router-link>
+          </div>
+  
+          <div
+            class="py-3 pe-3 nav-item"
+            :class="{ active: activeNavItem === 'posts' }"
+            @click="setactiveNavItem('posts')"
+          >
+            <router-link class="d-flex align-items-center" to="/dashboard/postcollection">
+              <i class="fa-solid fa-file text-white me-3"></i>
+              <p class="text-white">Posts</p>
+            </router-link>
+          </div>
+  
+          <div
+            class="py-3 pe-3 nav-item"
+            :class="{ active: activeNavItem === 'category' }"
+            @click="setactiveNavItem('category')"
+          >
+            <router-link class="d-flex align-items-center" to="/dashboard/categorycollection">
+              <i class="fa-solid fa-layer-group text-white me-3"></i>
+              <p class="text-white">Category</p>
+            </router-link>
+          </div>
+  
+          <div
+            class="py-3 pe-3 nav-item">
+            <router-link class="d-flex align-items-center" to="/">
+              <i class="fa-solid fa-eye text-white me-3"></i>
+              <p class="text-white">Visit Blog</p>
+            </router-link>
+          </div>
+        </div>
+      </div>
+  
+      <!-- <DashboardSidebar /> -->
+    </div>
+  </template>
+  
+
+  
+  <script setup>
+  import { ref } from 'vue';
+  
+  const activeNavItem = ref('home');
+  
+  function setactiveNavItem(navItem) {
+    activeNavItem.value = navItem;
+  }
+  </script>
+  
+
+
+  <style>
+  p {
+    margin-bottom: 0 !important;
+  }
+  
+  .active {
+    background: var(--mdb-gray-300);
+  }
+  
+  .active * {
+    color: #0f4c81 !important;
+  }
+  
+  .menu .menu-list div {
+    padding-left: 2rem !important;
+  }
+  </style>

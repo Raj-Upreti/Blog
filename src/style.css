@@ -105,3 +105,16 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
+
+
+/* DATATables Overwrite */
+/* table.dataTable tbody tr.selected > * {
+  box-shadow: none!important;
+  color: black;
+}
+
+table.dataTable tbody tr.selected > *:hover{
+  box-shadow: none!important;
+  color: black;
+} */

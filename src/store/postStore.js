@@ -4,6 +4,7 @@ export const usepostStore = defineStore('postStore', {
     state: () => ({
         postList: [
             {
+                id: 1,
                 image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643',
                 author: 'Mate Marschalko',
                 title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
@@ -15,6 +16,7 @@ export const usepostStore = defineStore('postStore', {
             },
 
             {
+                id: 2,
                 image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
                 author: 'Mate Marschalko',
                 title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
@@ -26,6 +28,7 @@ export const usepostStore = defineStore('postStore', {
             },
 
             {
+                id: 3,
                 image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
                 author: 'Mate Marschalko',
                 title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
@@ -37,6 +40,7 @@ export const usepostStore = defineStore('postStore', {
             },
 
             {
+                id: 4,
                 image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
                 author: 'Mate Marschalko',
                 title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
@@ -48,6 +52,7 @@ export const usepostStore = defineStore('postStore', {
             },
 
             {
+                id: 5,
                 image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
                 author: 'Mate Marschalko',
                 title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
@@ -59,6 +64,7 @@ export const usepostStore = defineStore('postStore', {
             },
 
             {
+                id: 6,
                 image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
                 author: 'Mate Marschalko',
                 title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
@@ -70,6 +76,7 @@ export const usepostStore = defineStore('postStore', {
             },
 
             {
+                id: 7,
                 image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
                 author: 'Mate Marschalko',
                 title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',

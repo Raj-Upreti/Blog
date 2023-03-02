@@ -52,17 +52,17 @@
                     </div>
 
                     <div class="py-5">
-                    
-                            <div class="card rounded-3 py-3 " style="background-color:whitesmoke;">
-                              <div class="card-body">
+
+                        <div class="card rounded-3 pt-2 " style="background-color:whitesmoke;">
+                            <div class="card-body">
                                 <h4 class=" fw-bold">Social Media Shared</h4>
                                 <div class="d-flex py-2 text-center" v-for="(data, index) in socialMediaData" :key="index">
                                     <img class="" :src="data.image" alt="" style="width:13%;height:8%;">
                                     <p class="px-2">{{ data.name }}</p>
                                     <p class="">{{ data.number }}</p>
                                 </div>
-                            </div>  
                             </div>
+                        </div>
 
                     </div>
                 </div>

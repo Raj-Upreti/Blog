@@ -3,7 +3,7 @@
         <div class="row py-5">
             <div class="col-md-8" >
                 <router-link :to="{path: '/post'}">
-                    <img class="rounded-5" :src="post.image" style="width:100%; object-fit:cover; height:27rem;">
+                    <img class="rounded-9" :src="post.image" style="width:100%; object-fit:cover; height:27rem;">
                 </router-link>
                 
             </div>
@@ -28,7 +28,7 @@
 import {usepostStore} from '../../../store/postStore';
 
 const postData = usepostStore();
-let post = postData.postList.shift();
+let post = postData.postList[0];
 
 // console.log(post)
 

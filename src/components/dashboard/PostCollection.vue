@@ -1,15 +1,23 @@
 <template>
     <div class="py-5">
         <div class="p-3">
-            <div class="mb-5 pb-5">
+            <div class="mb-5">
                 <router-link to="/dashboard/addblog">
                     <button class="btn btn-primary fw-bold btn-lg rounded-4">Add Blog</button>
                 </router-link>
             </div>
+
+            <!-- <div class="row pb-5">
+                <div class="col-md-6 text-start">
+                    <button class="btn btn-light mx-3 border">All</button>
+                    <button class="btn btn-light mx-3 border">Published</button>
+                    <button class="btn btn-light mx-3 border">Draft</button>
+                </div>
+            </div> -->
+
             <PostTable />
         </div>
     </div>
-    
 </template>
 
 

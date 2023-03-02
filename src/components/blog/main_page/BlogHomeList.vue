@@ -1,9 +1,9 @@
 <template >
     <div>
-            <div class="row mb-5" v-for="(content, index) in postData.postList" :key="index">
+            <div class="row mb-5" v-for="(content, index) in postList" :key="index">
                 <div class="col-lg-3">
                     <router-link class="w-100 h-100" :to="{path: '/post/' + content.slug}">
-                        <img :src="content.image" alt="" style="width:100%; object-fit:cover; height:100%;">
+                        <img class="rounded-6" :src="content.image" alt="" style="width:100%; object-fit:cover; height:100%;">
                     </router-link>
                 </div>
 
@@ -11,9 +11,10 @@
                     
                         <router-link :to="{path: '/post' + content.slug}" style="text-decoration:none;">
 
-                            <div class="h5 fw-bold mb-0" style="color:black;">{{ content.title }}</div>
+                            <div class="h5 fw-bold mb-0" style="color:black;">{{ content.title }} {{ content.id }}</div>
                             
                             <p class="mb-1" style="color:rgba(117, 117, 117, 1);">{{ content.details }}</p>
+
                         </router-link>
 
                         <div class="d-flex text-muted" style="font-size:0.8rem;">
@@ -30,6 +31,8 @@
 
 import { usepostStore } from '../../../store/postStore';
 const postData = usepostStore();
+
+const postList =  postData.postList.filter((value,index) => index > 0)
 
 // homelist
 

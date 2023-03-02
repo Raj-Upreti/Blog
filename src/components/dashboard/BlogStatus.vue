@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="container container-fluid text-center">
         <h1>Our Blogs</h1>
         <div class="pt-5">
@@ -56,4 +56,4 @@
 </script>
 
 
-<style></style>
+<style></style> -->
