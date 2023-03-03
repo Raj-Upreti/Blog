@@ -54,7 +54,10 @@ function updateStore() {
   let categoryData = {
     category: category.value
   }
-
+if(categoryData.category == "") {
+  alert('Please enter the category name.');
+  return false;
+}
   categoryStore.addCategory(categoryData);
 
 }
@@ -80,8 +83,8 @@ const categoryList = [
   { title: 'Self Improvement', description: 'Self Improvement articles can be found here.' },
 ]
 
-
 </script>
+
 
 <style scoped>
 input {
@@ -104,4 +107,5 @@ input:hover {
 
 label {
   font-weight: 800;
-}</style>
+}
+</style>

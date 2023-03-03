@@ -9,12 +9,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
             <li class="nav-item">
-              <router-link to="/" class="nav-link">Updates</router-link>
+              <router-link to="/" class="nav-link">Home</router-link>
             </li>
+
             <li class="nav-item">
-              <router-link to="/" class="nav-link">Write</router-link>
+              <router-link to="/update" class="nav-link">Updates</router-link>
             </li>
+
+            <li class="nav-item">
+              <router-link to="/write" class="nav-link">Write</router-link>
+            </li>
+            
             <!-- <li class="nav-item">
               <router-link to="/membership" class="nav-link">membership</router-link>
             </li> -->

@@ -5,7 +5,7 @@
                 <div class="px-4 py-5">
                     <h4 class="fw-bold">Blog Post</h4>
 
-                    <form action="" class="needs-validation" novalidate>
+                    <form action="" class="">
 
                         <div class="py-3">
                             <label for="title" class="form-label">Enter Title <span class="text-danger">*</span></label>
@@ -24,7 +24,7 @@
 
 
             <div class="col-lg-3 py-5 px-4" style="background-color: rgb(241, 243, 244);">
-                <form class="needs-validation" novalidate>
+                <form class="">
                     <div>
                         <div>
                             <label for="link" class="form-label">Blog Link <span class="text-danger">*</span></label>
@@ -46,7 +46,8 @@
 
                         <div>
                             <label for="category">Add Category <span class="text-danger">*</span></label> <br>
-                            <input type="text" name="category" class="form-control fomr-input-small" v-model="category" required>
+                            <input type="text" name="category" class="form-control form-input-small" v-model="category"
+                                required>
                         </div>
 
                         <hr>
@@ -55,12 +56,6 @@
                             <input type="file" ref="fileInput" accept="image" required>
                         </div>
 
-
-
-                        <!-- <div class="py-3">
-                            <label for="author">Author name <span class="text-danger">*</span></label> <br>
-                            <input type="text" class="form-control form-input" v-model="author">
-                        </div> -->
                     </div>
 
 
@@ -126,14 +121,10 @@ function updateStore() {
         category: category.value
     }
 
-    // if(title == "" || content == "" || file == "" || category == "") {
-    //     alert('Please fill the form.');
-    //     return false;
-    // }
-
-    // else{
-        
-    // }
+    if (data.title == "" || data.content == "" || data.file == "" || categoryData.category == "") {
+        alert('Please enter the fields first.');
+        return false;
+    }
 
     //Two way Binding using Ref ends
 
@@ -150,6 +141,7 @@ function updateStore() {
 
 
 </script>
+
 
 <style scoped>
 .form-input {
