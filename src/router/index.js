@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import Blog from '../view/Blog.vue';
 // import Help from '../components/blog/Help.vue';
-// import Login from '../components/blog/Login.vue';
+import Login from '../components/blog/Login.vue';
 import Archive from '../components/blog/Archive.vue';
 import Write from '../components/blog/Write.vue';
 import Updates from '../components/blog/Updates.vue';
@@ -27,11 +27,11 @@ const router = createRouter({
             { path: '', name: 'main-page', component: MainPage },
             { path: 'post/:slug', name: 'single-post', component: ContentDetails },
             // { path: 'ourstory', name: 'ourstory', component: Ourstory },
-            // { path: 'login', name: 'login', component: Login },
             { path: 'category/:slug', name: 'program', component: Archive },
             // { path: 'help', name: 'help', component: Help },
             { path: 'write', name: 'help', component: Write },
             { path: 'update', name: 'update', component: Updates },
+            { path: 'login', name: 'login', component: Login },
         ] 
         },
 

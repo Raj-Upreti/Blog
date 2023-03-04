@@ -22,6 +22,10 @@
               <router-link to="/write" class="nav-link">Write</router-link>
             </li>
             
+            <li class="nav-item">
+              <router-link to="/login" class="nav-link">LogIn</router-link>
+            </li>
+
             <!-- <li class="nav-item">
               <router-link to="/membership" class="nav-link">membership</router-link>
             </li> -->

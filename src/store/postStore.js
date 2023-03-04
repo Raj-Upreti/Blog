@@ -1,98 +1,59 @@
 import { defineStore } from "pinia";
+import router from "../router";
+import PostService from '../service/postService';
 
 export const usepostStore = defineStore('postStore', {
     state: () => ({
-        postList: [
-            {
-                id: 1,
-                image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643',
-                author: 'Mate Marschalko',
-                title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
-                details: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum vitae quae fuga, iustosapiente esse? The name "Nepal" is first recorded in texts from the Vedic period of the Indian subcontinent, the era in ancient Nepal when Hinduism was founded, the predominant religion of the country. In the middle of the first millennium BC,',
-                date: 'July 20, 2023',
-                readtime: '15 min',
-                category: 'Smart Home',
-                slug: "chatgpt-3"
-            },
-
-            {
-                id: 2,
-                image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
-                author: 'Mate Marschalko',
-                title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
-                details: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum vitae quae fuga, iustosapiente esse?',
-                date: 'Jan 20 ',
-                readtime: '15 min',
-                category: 'Smart Home',
-                slug: "chatgpt-3"
-            },
-
-            {
-                id: 3,
-                image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
-                author: 'Mate Marschalko',
-                title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
-                details: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum vitae quae fuga, iustosapiente esse?',
-                date: 'Jan 20 ',
-                readtime: '15 min',
-                category: 'Smart Home',
-                slug: "chatgpt-3"
-            },
-
-            {
-                id: 4,
-                image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
-                author: 'Mate Marschalko',
-                title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
-                details: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum vitae quae fuga, iustosapiente esse?',
-                date: 'jan 20. ',
-                readtime: '15 min',
-                category: 'Smart Home',
-                slug: "chatgpt-3"
-            },
-
-            {
-                id: 5,
-                image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
-                author: 'Mate Marschalko',
-                title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
-                details: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum vitae quae fuga, iustosapiente esse?',
-                date: 'jan 20. ',
-                readtime: '15 min',
-                category: 'Smart Home',
-                slug: "chatgpt-3"
-            },
-
-            {
-                id: 6,
-                image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
-                author: 'Mate Marschalko',
-                title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
-                details: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum vitae quae fuga, iustosapiente esse?',
-                date: 'jan 20. ',
-                readtime: '15 min',
-                category: 'Smart Home',
-                slug: "chatgpt-3"
-            },
-
-            {
-                id: 7,
-                image: 'https://miro.medium.com/fit/c/400/268/1*l9yQEYry4mPPajh4bLxP_w.jpeg',
-                author: 'Mate Marschalko',
-                title: 'ChatGPT in an iOS Shortcut — Worlds Smartest HomeKit Voice Assistant',
-                details: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum vitae quae fuga, iustosapiente esse?',
-                date: 'jan 20. ',
-                readtime: '15 min',
-                category: 'Smart Home',
-                slug: "chatgpt-3"
-            },
-        ]
+        postList: []
     }),
 
     actions: {
-        addBlog(data) {
-            this.postList.push(data);
+       // login user
+    async readAllPosts() {
+        try {
+          const response = await PostService.ReadAllPost()
+          this.postList = response;
+        } catch (error) {
+          console.log(error)
+          // handle the error here
         }
+      },  
 
+    
+
+    async addPost(data) {
+        try {
+            const response = await PostService.CreatePost(data)
+            this.postList.push(response);
+            router.push('/dashboard/postcollection')
+          } catch (error) {
+            console.log(error)
+            // handle the error here
+          }
+    },
+
+    addData(){
+        console.log("adding data");
+        this.postList.push({
+            "id": 5,
+            "post_date": "2023-03-03T06:37:08.395364Z",
+            "post_date_gmt": "2023-03-03T06:37:08.395388Z",
+            "post_content": "prakash",
+            "post_title": "asdfg",
+            "post_excerpt": "asdfgh",
+            "reading_time": "12",
+            "post_status": "Draft",
+            "ping_status": "",
+            "post_modified": "2023-03-03T06:37:08.395422Z",
+            "post_modified_gmt": "2023-03-03T06:37:08.395437Z",
+            "post_author": null,
+            "comment_status": null,
+            "comments_count": null,
+            "category_name": 1
+        });
     }
+
+}
+
+   
 })

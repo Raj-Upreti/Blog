@@ -15,4 +15,10 @@
   
 <script setup>
 import DashboardSidebar from '../components/dashboard/common/DashboardSidebar.vue';
+import router from '../router';
+
+const accessToken = JSON.parse(localStorage.getItem('access_token')) || null;
+if (!accessToken){
+    router.push('/login')
+}
 </script>
