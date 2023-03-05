@@ -5,10 +5,16 @@ class CategoryService {
 
     // Post Service
     async ReadAllCategory() {
-
-    }
-
-    async ReadSingleCategory(){
+        try {
+            const response= await axios.get('');
+            return Promise.resolve(response.data); 
+        } catch (error) {
+            if(error.response && error.response.status === 400){
+                return Promise.reject('API error');
+            } else {
+                return Promise.reject('Error fetching Category');
+            }
+        }
 
     }
 
@@ -25,3 +31,5 @@ class CategoryService {
     }
 
 }
+
+export default new CategoryService();

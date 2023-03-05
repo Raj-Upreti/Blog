@@ -1,4 +1,5 @@
 import { defineStore } from "pinia"
+import CategoryService from '../service/catergoryService';
 
 export const useblogCategory= defineStore('category', {
     state: () => ({
@@ -48,6 +49,16 @@ export const useblogCategory= defineStore('category', {
     },
 
     actions: {
+        async ReadAllCategory() {
+            try{
+                const response= await CategoryService.ReadAllCategory();
+                this.categories= response;
+                console.log(response);
+            }catch(error){
+                console.log(error);
+            }
+        },
+
         addCategory(categoryData) {
             this.categories.push(categoryData);
         }

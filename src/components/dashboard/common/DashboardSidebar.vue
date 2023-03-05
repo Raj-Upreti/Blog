@@ -54,7 +54,7 @@
           <div
             class="py-3 pe-3 nav-item" @click="logout">
             <div class="d-flex align-items-center" >
-              <i class="fa-solid fa-eye text-white me-3"></i>
+              <i class="fa-solid fa-right-from-bracket me-3"></i>
               <p class="text-white">Logout</p>
             </div>
           </div>

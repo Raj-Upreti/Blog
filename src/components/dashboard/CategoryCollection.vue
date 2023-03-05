@@ -22,10 +22,10 @@
         <div
             Dividerlass="h4 pb-5">Categories</div>
         <div class="row">
-          <div class="col-lg-6 justify-content-between py-2" v-for="(category, index) in categoryList" :key="index">
+          <div class="col-lg-6 justify-content-between py-2" v-for="(category, index) in categoryStore.categories" :key="index">
             <div class="card">
               <div class="card-body py-1 px-3 d-flex justify-content-between">
-                <div class="small fw-bold">{{ category.title }}</div>
+                <div class="small fw-bold">{{ category['category-name'] }}</div>
                 <!-- <a href="#" class="btn  rounded-3 btn-primary">View All</a> -->
                 <a class="text-danger nav-link">X</a>
               </div>
@@ -62,26 +62,6 @@ if(categoryData.category == "") {
 
 }
 
-
-const categoryList = [
-  { title: 'Programming', description: 'It contains various topics under programming.' },
-
-  { title: 'Writting', description: 'It contains various blogs under category Writting.' },
-
-  { title: 'Data Science', description: 'Here you can find numbers of blogs of data Science field.' },
-
-  { title: 'Politics', description: 'Enjoy number of political blogs from here.' },
-
-  { title: 'Productivity', description: 'Numbers of blog under productivity can be found here.' },
-
-  { title: 'Technology', description: 'Blogs related to latest technology can be found here' },
-
-  { title: 'Relationship', description: 'Here you can found blogs related to relationship' },
-
-  { title: 'Machine Learning', description: 'Machine Learning materials can found here' },
-
-  { title: 'Self Improvement', description: 'Self Improvement articles can be found here.' },
-]
 
 </script>
 

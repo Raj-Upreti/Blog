@@ -8,7 +8,7 @@ export const usepostStore = defineStore('postStore', {
     }),
 
     actions: {
-       // login user
+       //
     async readAllPosts() {
         try {
           const response = await PostService.ReadAllPost()
@@ -51,7 +51,11 @@ export const usepostStore = defineStore('postStore', {
             "comments_count": null,
             "category_name": 1
         });
-    }
+    },
+
+    addPost(postData) {
+      this.postList.push(postData);
+  }
 
 }
 

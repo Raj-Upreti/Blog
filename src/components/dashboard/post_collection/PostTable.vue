@@ -142,7 +142,7 @@ const data = [
     createdRow: (row, data) => {
 
         console.log(data.post_status)
-      const statusCell = row.querySelector("td:last-child");
+        const statusCell = row.querySelector("td:last-child");
   
       // Set the cell's background color based on the value of the "status" property
       if (data.post_status.toLowerCase() === "published") {

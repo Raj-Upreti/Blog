@@ -131,10 +131,8 @@ function updateStore() {
 
     //Updating store 
 
-    postStore.addBlog(data);
-    categoryStore.addCategory(categoryData);
-
-    //saving data in store   
+    postStore.addPost(data);
+    categoryStore.addCategory(categoryData); 
 
     router.push('/dashboard/postcollection');
 }
