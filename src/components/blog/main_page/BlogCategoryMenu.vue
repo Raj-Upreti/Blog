@@ -8,7 +8,7 @@
 
 <script setup>
 // category store
- import { useblogCategory } from '../../../store/blogCategory.js'
+ import { useblogCategory } from '../../../store/blogCategory.js';
 // api call
 // or
 // store call
