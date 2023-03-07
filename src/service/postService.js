@@ -7,7 +7,6 @@ class PostService {
     async ReadAllPost() {
         try {
             const response = await axios.get('api/post/');
-            // localStorage.setItem('token', JSON.stringify(response.data))
             return Promise.resolve(response.data);
           } catch (error) {
             if (error.response && error.response.status === 400) {

@@ -25,7 +25,7 @@
           <div class="col-lg-6 justify-content-between py-2" v-for="(category, index) in categoryStore.categories" :key="index">
             <div class="card">
               <div class="card-body py-1 px-3 d-flex justify-content-between">
-                <div class="small fw-bold">{{ category['category-name'] }}</div>
+                <div class="small fw-bold">{{ category['name'] }}</div>
                 <!-- <a href="#" class="btn  rounded-3 btn-primary">View All</a> -->
                 <a class="text-danger nav-link">X</a>
               </div>
@@ -47,26 +47,26 @@ import { useblogCategory } from '../../store/blogCategory';
 
 const categoryStore = useblogCategory();
 
-const category = ref();
+const category = ref('');
 
   
 function updateStore() {
   let categoryData = {
-    name: category.value
+    'name': category.value
   }
-if(categoryData.category == "") {
+if(categoryData.name == "") {
   alert('Please enter the category name.');
   return false;
 }
-  categoryStore.addCategory(categoryData);
+  categoryStore.categories.push(categoryData);
 
 }
 
-onMounted(async ()=>{
+onMounted( async ()=>{
     categoryStore.ReadAllCategory();
   });
 
-  computed(() => {
+computed(() => {
     return categoryStore.categories;
   });
 
