@@ -19,9 +19,15 @@ class PostService {
     }
 
     async CreatePost(data){
-        // response
+        return axios.post('api/post/', data)
+          .then(response => {
+            return Promise.resolve(response.data);
+          })
+          .catch( error => {
+            return Promise.reject(error);
+          })
     }
-
+    
     async DeletePost(){
 
     }

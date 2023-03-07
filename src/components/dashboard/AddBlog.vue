@@ -113,10 +113,13 @@ const updateFile = () => {
 function updateStore() {
 
     let data = {
-        title: title.value,
-        content: content.value.getHTML(),
-        file: updateFile.value
+        "post_title": title.value,
+        "post_content": content.value.getHTML(),
+        "post_excerpt": content.value.getHTML(),
+        "category_name": 1
+        // file: updateFile.value
     }
+
     let categoryData = {
         category: category.value
     }

@@ -6,7 +6,7 @@ class CategoryService {
     // Post Service
     async ReadAllCategory() {
         try {
-            const response= await axios.get('');
+            const response= await axios.get('api/category');
             return Promise.resolve(response.data); 
         } catch (error) {
             if(error.response && error.response.status === 400){
@@ -18,8 +18,14 @@ class CategoryService {
 
     }
 
-    async CreateCategory(){
-
+    async CreateCategory(data){
+        return axios.post('api/category', data)
+            .then (response => {
+                return Promise.resolve(response.data)
+            })
+            .catch(error => {
+                return Promise.reject(error);
+            })
     }
 
     async DeleteCategory(){

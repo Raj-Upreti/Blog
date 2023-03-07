@@ -41,18 +41,18 @@
 
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import { useblogCategory } from '../../store/blogCategory';
 
 
 const categoryStore = useblogCategory();
 
-const category = ref('');
+const category = ref();
 
   
 function updateStore() {
   let categoryData = {
-    category: category.value
+    name: category.value
   }
 if(categoryData.category == "") {
   alert('Please enter the category name.');
@@ -61,6 +61,14 @@ if(categoryData.category == "") {
   categoryStore.addCategory(categoryData);
 
 }
+
+onMounted(async ()=>{
+    categoryStore.ReadAllCategory();
+  });
+
+  computed(() => {
+    return categoryStore.categories;
+  });
 
 
 </script>
