@@ -31,13 +31,12 @@ export const useblogCategory= defineStore('category', {
             }
         },
 
-        async deleteCategory(id) {
+        async deleteCategory(slug) {
             try {
-                await CategoryService.deleteCategory(id)
+                await CategoryService.deleteCategory(slug)
                 .then (res => {
-                    const newCategory = this.categories.filter(item => item.id !== id)
+                    const newCategory = this.categories.filter(item => item.slug !== slug)
                     this.categories = newCategory;
-
                 })
             } catch (error) {
                 console.log(error);

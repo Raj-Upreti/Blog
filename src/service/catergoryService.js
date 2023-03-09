@@ -28,8 +28,8 @@ class CategoryService {
             })
     }
 
-    async deleteCategory(id){
-        return axios.delete(`/api/category/${id}`)
+    async deleteCategory(slug){
+        return axios.delete(`/api/category/${slug}`)
             .then(res => {
                 return Promise.resolve(res.data);
             })

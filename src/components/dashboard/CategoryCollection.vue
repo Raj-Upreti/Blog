@@ -22,10 +22,10 @@
           <div class="col-lg-6 justify-content-between py-2" v-for="(category, index) in categoryStore.categories"
             :key="index">
             <div class="card">
-              <div class="card-body py-1 px-3 d-flex justify-content-between">
+              <div class="card-body py-1 px-3 d-flex justify-content-between align-items-center">
                 <div class="small fw-bold">{{ category['name'] }}</div>
                 <!-- <a href="#" class="btn  rounded-3 btn-primary">View All</a> -->
-                <a class="text-danger nav-link" @click.prevent="deleteCategory(category.id)">X</a>
+                <a class="text-danger nav-link btn shadow-0" style="curosr:pointer;" @click.prevent="deleteCategory(category.slug)">X</a>
               </div>
             </div>
           </div>
@@ -63,9 +63,8 @@ function updateStore() {
 }
 
 // const id = computed(() => route.params.id);
-async function deleteCategory(id) {
-  await categoryStore.deleteCategory(id);
-  router.push('/dashboard/categorycollection');
+async function deleteCategory(slug) {
+  await categoryStore.deleteCategory(slug);
 }
 
 onMounted(async () => {

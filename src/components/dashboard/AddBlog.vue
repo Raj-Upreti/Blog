@@ -131,7 +131,6 @@ if (id.value != "undefined"){
     console.log(posts)
     const object = posts.find(item => item.id === id.value)
     console.log(object)
-    title = ref("hello")
     // quill
     // category
 }
@@ -162,7 +161,7 @@ function updateStore() {
     let data = {
         post_title: title.value,
         post_content: content.value.getHTML(),
-        post_excerpt: content.value.getHTML(),
+        post_excerpt: content.value.getHTML().slice(0,10),
         category_name: category.value
         // file: updateFile.value
     }

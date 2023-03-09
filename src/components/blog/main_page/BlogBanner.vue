@@ -16,7 +16,7 @@
                     <p>{{ content.post_date_gmt }}</p>
                    </div>
                    <p class="h3 fw-bold" style="line-height: 1.5">{{ content.post_title }}</p>
-                   <p class="pt-2 text-muted" style="font-size:1.2rem;">{{ content.post_content }}</p> 
+                   <p class="pt-2 text-muted" style="font-size:1.2rem;">{{ content.post_excerpt}}</p> 
                 <!-- </router-link> -->
             </div> 
 
