@@ -5,7 +5,7 @@
         <BlogBanner />
 
         <!-- // Blog Trending Section -->
-        <BlogTrending />
+        <!-- <BlogTrending /> -->
 
         <!-- // Blog Content List Section  -->
         <BlogContent />
@@ -20,7 +20,7 @@
 import BlogBanner from './main_page/BlogBanner.vue';
 
 // Blog Trending Section
-import BlogTrending from './main_page/BlogTrending.vue';
+// import BlogTrending from './main_page/BlogTrending.vue';
 
 // Blog Content List Section
 import BlogContent from './main_page/BlogContent.vue';

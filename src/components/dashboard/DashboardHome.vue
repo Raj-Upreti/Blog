@@ -77,13 +77,17 @@
   
 <script setup>
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import WebChart from '../dashboard/common/WebChart.vue';
+
+
+
 
 import DataTable from 'datatables.net-vue3';
 import DataTablesLib from 'datatables.net';
 import 'datatables.net-select';
 DataTable.use(DataTablesLib);
+
 
 let dt;
 const table = ref();

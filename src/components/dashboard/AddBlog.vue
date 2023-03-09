@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="overflow:hidden;">
+<div class="container" style="overflow:hidden;">
         <div class="row">
             <div class="col-lg-9">
                 <div class="px-4 py-5">
@@ -44,10 +44,17 @@
                         </div>
                         <hr>
 
-                        <div>
+                        <div v-if="categoryExists">
                             <label for="category">Add Category <span class="text-danger">*</span></label> <br>
-                            <input type="text" name="category" class="form-control form-input-small" v-model="category"
-                                required>
+                            <select id="select" v-model="category">
+                                <option value="" selected disabled>Select Category</option>
+                                <option v-for="category in categoryList" :key="category.id" :value="category.id">{{ category.name }}</option>
+                            
+                            </select>
+                        </div>
+
+                        <div v-if="!categoryExists">
+                            <div class="btn btn-sm btn-primary">Add New Category</div>
                         </div>
 
                         <hr>
@@ -81,7 +88,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 //Vue Quill registration locally
 import { QuillEditor } from '@vueup/vue-quill';
@@ -91,18 +98,58 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { usepostStore } from '../../store/postStore';
 import { useblogCategory } from '../../store/blogCategory';
 import router from '../../router';
+import { useRoute } from 'vue-router'
 
 
-// const router= router();
+//Two way Binding using Ref starts
+var title = ref('');
+var content = ref('');
+const file = ref(null);
+const category = ref('');
+
+
 const postStore = usepostStore();
 const categoryStore = useblogCategory();
 
 
-//Two way Binding using Ref starts
-const title = ref('');
-const content = ref('');
-const file = ref(null);
-const category = ref('');
+
+/*
+*   ==============================================================
+*   This is the code block for the editing the post. 
+*   If you come to this page via /dashboard/addblog,
+*   this function will not run
+*   ==============================================================
+*   Start
+*/
+
+const route = useRoute()
+// Use a computed property to extract the `id` parameter from the current route
+const id = computed(() => route.params.id)
+
+if (id.value != "undefined"){
+    const posts = postStore.postList;
+    console.log(posts)
+    const object = posts.find(item => item.id === id.value)
+    console.log(object)
+    title = ref("hello")
+    // quill
+    // category
+}
+
+// END 
+// ==============================================================
+
+var categoryExists = computed(()=>{
+    if (categoryStore.categories.length == 0 ){
+        return false
+    }else{
+        return true
+    }
+});
+
+const categoryList = computed(() => {
+    return categoryStore.categories;
+});
 
 
 //For HTML input handling
@@ -113,29 +160,29 @@ const updateFile = () => {
 function updateStore() {
 
     let data = {
-        "post_title": title.value,
-        "post_content": content.value.getHTML(),
-        "post_excerpt": content.value.getHTML(),
-        "category_name": 1
+        post_title: title.value,
+        post_content: content.value.getHTML(),
+        post_excerpt: content.value.getHTML(),
+        category_name: category.value
         // file: updateFile.value
     }
 
-    let categoryData = {
-        category: category.value
-    }
+    console.log(data);
 
-    if (data.title == "" || data.content == "" || data.file == "" || categoryData.category == "") {
+    
+
+    if (data.post_title == "" || data.post_content == "" || data.category_name == "") {
         alert('Please enter the fields first.');
+        if (!categoryExists){
+            // popup a entry form
+        }
         return false;
-    }
-
-    //Two way Binding using Ref ends
+    }  
 
 
     //Updating store 
 
-    postStore.addPost(data);
-    categoryStore.addCategory(categoryData); 
+    postStore.createPost(data);
 
     router.push('/dashboard/postcollection');
 }

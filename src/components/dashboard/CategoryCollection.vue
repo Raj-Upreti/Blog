@@ -14,20 +14,18 @@
           </div>
         </form>
 
-       
-
       </div>
 
       <div class="col-lg-6 vh-100 py-5" style="background-color: #f1f3f4;">
-        <div
-            Dividerlass="h4 pb-5">Categories</div>
+        <div Dividerlass="h4 pb-5">Categories</div>
         <div class="row">
-          <div class="col-lg-6 justify-content-between py-2" v-for="(category, index) in categoryStore.categories" :key="index">
+          <div class="col-lg-6 justify-content-between py-2" v-for="(category, index) in categoryStore.categories"
+            :key="index">
             <div class="card">
               <div class="card-body py-1 px-3 d-flex justify-content-between">
                 <div class="small fw-bold">{{ category['name'] }}</div>
                 <!-- <a href="#" class="btn  rounded-3 btn-primary">View All</a> -->
-                <a class="text-danger nav-link">X</a>
+                <a class="text-danger nav-link" @click.prevent="deleteCategory(category.id)">X</a>
               </div>
             </div>
           </div>
@@ -43,32 +41,41 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useblogCategory } from '../../store/blogCategory';
+import { useRoute } from 'vue-router';
+import router from '../../router';
 
 
 const categoryStore = useblogCategory();
-
 const category = ref('');
+const route= useRoute();
 
-  
+
 function updateStore() {
   let categoryData = {
     'name': category.value
   }
-if(categoryData.name == "") {
-  alert('Please enter the category name.');
-  return false;
-}
-  categoryStore.categories.push(categoryData);
+  if (categoryData.name == "") {
+    alert('Please enter the category name.');
+    return false;
+  }
+  categoryStore.addCategory(categoryData);
 
 }
 
-onMounted( async ()=>{
-    categoryStore.ReadAllCategory();
-  });
+// const id = computed(() => route.params.id);
+async function deleteCategory(id) {
+  await categoryStore.deleteCategory(id);
+  router.push('/dashboard/categorycollection');
+}
+
+onMounted(async () => {
+  categoryStore.readAllCategory();
+});
+
 
 computed(() => {
-    return categoryStore.categories;
-  });
+  return categoryStore.categories;
+});
 
 
 </script>

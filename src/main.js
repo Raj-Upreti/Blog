@@ -10,6 +10,7 @@ import './axios';
 
 
 
+
 // import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
@@ -33,9 +34,10 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
+const app = createApp(App);
 
-createApp(App)
-  .use(router)
+app.use(router)
   .use(Pinia)
   .use(vTitle)
   .mount('#app')
+

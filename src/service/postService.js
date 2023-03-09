@@ -4,7 +4,7 @@ import router from '../router';
 class PostService {
 
     // Post Service
-    async ReadAllPost() {
+    async readAllPost() {
         try {
             const response = await axios.get('api/post/');
             return Promise.resolve(response.data);
@@ -17,7 +17,7 @@ class PostService {
           }
     }
 
-    async CreatePost(data){
+    async createPost(data){
         return axios.post('api/post/', data)
           .then(response => {
             return Promise.resolve(response.data);
@@ -27,14 +27,15 @@ class PostService {
           })
     }
     
-    async DeletePost(){
-
+    async deletePost(id){
+      return axios.delete(`/api/post/${id}`)
+        .then(res => {
+          return Promise.resolve(res.data);
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
-
-    async UpdatePost(){
-
-    }
-
 }
 
 export default new PostService();

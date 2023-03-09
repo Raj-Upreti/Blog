@@ -1,17 +1,44 @@
 import { defineStore } from "pinia";
 import router from "../router";
 import PostService from '../service/postService';
+import { useblogCategory } from './blogCategory';
 
 export const usepostStore = defineStore('postStore', {
     state: () => ({
         postList: []
     }),
 
+    getters: {
+      // getPosts: get_post_list(),
+    },
+
     actions: {
-       //
+
+      get_posts() {
+        const categoryStore = useblogCategory();
+        this.postList.forEach((el)=>{
+          el.action = "";
+          categoryStore.categories.forEach((cat)=>{
+            if (el.category_name == cat.id){
+              el.category_name = cat.name
+              el.action = `
+              <a class='btn btn-sm btn-danger' href='post/delete/${el.id}'>Delete</a>
+              <a class='btn btn-sm btn-info' href='/dashboard/post/edit/${el.id}'>Edit</a>`
+            }
+          })
+        })
+
+        if (this.postList.length != 0){
+          return true
+        }else{
+          return false
+        }
+
+      },
+
     async readAllPosts() {
         try {
-          const response = await PostService.ReadAllPost()
+          const response = await PostService.readAllPost()
           this.postList = response;
         } catch (error) {
           console.log(error)
@@ -21,10 +48,11 @@ export const usepostStore = defineStore('postStore', {
 
     
 
-    async addPost(data) {
+    async createPost(data) {
+      console.log(data);
         try {
-            const response = await PostService.CreatePost(data)
-            // console.log(response);
+            const response = await PostService.createPost(data)
+            console.log(response);
             this.postList.push(response);
             router.push('/dashboard/postcollection')
           } catch (error) {
@@ -32,6 +60,19 @@ export const usepostStore = defineStore('postStore', {
             // handle the error here
           }
     },
+
+    async deletePost(id) {
+      // console.log(id.value);
+      try {
+        await PostService.deletePost(id.value)
+        .then(res => {
+          const newPosts = this.postList.filter(item => item.id !== id)
+          this.postList = newPosts;
+        })
+      } catch(error){
+        console.log(error);
+      }
+    }
 
   //   addPost(postData) {
   //     this.postList.push(postData);

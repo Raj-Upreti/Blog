@@ -19,7 +19,7 @@ class CategoryService {
     }
 
     async CreateCategory(data){
-        return axios.post('api/category', data)
+        return axios.post('api/category/', data)
             .then (response => {
                 return Promise.resolve(response.data)
             })
@@ -28,12 +28,14 @@ class CategoryService {
             })
     }
 
-    async DeleteCategory(){
-
-    }
-
-    async UpdateCategory(){
-
+    async deleteCategory(id){
+        return axios.delete(`/api/category/${id}`)
+            .then(res => {
+                return Promise.resolve(res.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
 }

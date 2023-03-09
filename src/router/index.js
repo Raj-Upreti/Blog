@@ -14,6 +14,7 @@ import CategoryCollection from '../components/dashboard/CategoryCollection.vue';
 import DashboardHome from '../components/dashboard/DashboardHome.vue';
 import MainPage from '../components/blog/MainPage.vue';
 import Dashboard from '../view/Dashboard.vue'
+import DeletePost from "../components/dashboard/post_collection/DeletePost.vue";
 
 
 const router = createRouter({
@@ -41,8 +42,9 @@ const router = createRouter({
             name: 'dashboard-home', 
             component: Dashboard, 
             children: [
-
                 { path:'', name:'dashboardhome', component:DashboardHome },
+                { path: 'post/delete/:id', name: 'PostCollection1', component: DeletePost},
+                { path: 'post/edit/:id', name:'edit-blog', component: AddBlog},
                 { path: 'postcollection', name: 'PostCollection', component: PostCollection},
                 { path: 'categorycollection', name: 'CategoryCollection',component: CategoryCollection},
                 { path: 'addblog', name:'addblog', component: AddBlog},
