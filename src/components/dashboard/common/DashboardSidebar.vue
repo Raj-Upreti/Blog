@@ -7,41 +7,44 @@
         style="width: 80%" />
     </div>
     <div class="menu" style="padding-top: 3rem;">
+      <hr>
       <div class="fw-bold menu-list">
-        <div class="py-3 pe-3 nav-item" :class="{ active: activeNavItem === 'home' }" @click="setactiveNavItem('home')">
-          <router-link class="d-flex align-items-center" to="/dashboard">
+        <div class="nav-item" :class="{ active: activeNavItem === 'home' }" @click="setactiveNavItem('home')">
+          <router-link class="d-flex align-items-center py-3 pe-3" to="/dashboard">
             <i class="fa-solid fa-house text-white me-3"></i>
             <p class="text-white">Home</p>
           </router-link>
         </div>
 
-        <div class="py-3 pe-3 nav-item" :class="{ active: activeNavItem === 'posts' }" @click="setactiveNavItem('posts')">
-          <router-link class="d-flex align-items-center" to="/dashboard/postcollection">
+        <div class=" nav-item" :class="{ active: activeNavItem === 'posts' }" @click="setactiveNavItem('posts')">
+          <router-link class="d-flex align-items-center py-3 pe-3" to="/dashboard/postcollection">
             <i class="fa-solid fa-file text-white me-3"></i>
             <p class="text-white">Posts</p>
           </router-link>
         </div>
 
-        <div class="py-3 pe-3 nav-item" :class="{ active: activeNavItem === 'category' }"
+        <div class=" nav-item" :class="{ active: activeNavItem === 'category' }"
           @click="setactiveNavItem('category')">
-          <router-link class="d-flex align-items-center" to="/dashboard/categorycollection">
+          <router-link class="d-flex align-items-center py-3 pe-3" to="/dashboard/categorycollection">
             <i class="fa-solid fa-layer-group text-white me-3"></i>
             <p class="text-white">Category</p>
           </router-link>
         </div>
 
-        <div class="py-3 pe-3 nav-item">
-          <router-link class="d-flex align-items-center" to="/">
+        <div class=" nav-item">
+          <router-link class="d-flex align-items-center py-3 pe-3" to="/">
             <i class="fa-solid fa-eye text-white me-3"></i>
             <p class="text-white">Visit Blog</p>
           </router-link>
         </div>
 
-        <div class="py-3 pe-3 nav-item" @click="logout">
-          <div class="d-flex align-items-center">
-            <i class="fa-solid fa-right-from-bracket me-3"></i>
+        <hr>
+
+        <div class=" nav-item" @click="logout">
+          <a class="d-flex align-items-center py-3 pe-3 ps-0">
+            <i class="fa-solid fa-right-from-bracket me-3 text-light"></i>
             <p class="text-white">Logout</p>
-          </div>
+          </a>
         </div>
 
 

@@ -58,6 +58,7 @@ function updateStore() {
     alert('Please enter the category name.');
     return false;
   }
+  category.value = ""
   categoryStore.addCategory(categoryData);
 
 }

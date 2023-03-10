@@ -2,13 +2,26 @@
     <div class=" container pt-3 container-fluid border-bottom">
         <div class="row py-5" v-for="(content, index) in post" :key="index">
            
-            <div class="col-md-8" >
+            <div v-if="content.post_image" class="col-md-8" >
                  <router-link :to="{path: '/post'}">
                       <img class="rounded-9"  style="width:100%; object-fit:cover; height:27rem;"> 
                 </router-link>  
                 
             </div>
-             <div class="col-md-4" style="font-size:1rem;">
+             
+             <div v-if="content.post_image" class="col-md-4"  style="font-size:1rem;">
+                <!-- <router-link :to="{path: '/post'}" style="text-decoration:none; color:black;"> -->
+                   <div class="d-flex pb-2 align-items-center">
+                     <p class="fw-bold">{{ content.post_author }}</p>
+                    <div style="padding: 0 0.5rem;">|</div>
+                    <p>{{ content.post_date_gmt }}</p>
+                   </div>
+                   <p class="h3 fw-bold" style="line-height: 1.5">{{ content.post_title }}</p>
+                   <p class="pt-2 text-muted" style="font-size:1.2rem;">{{ content.post_excerpt}}</p> 
+                <!-- </router-link> -->
+            </div> 
+
+            <div v-if="!content.post_image" class="col-md-12"  style="font-size:1rem;">
                 <!-- <router-link :to="{path: '/post'}" style="text-decoration:none; color:black;"> -->
                    <div class="d-flex pb-2 align-items-center">
                      <p class="fw-bold">{{ content.post_author }}</p>

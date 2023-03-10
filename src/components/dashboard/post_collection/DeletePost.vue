@@ -1,26 +1,24 @@
 <template >
-    <div>
-        Successfully Deleted
-    </div>
+  <div>Successfully Deleted</div>
 </template>
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { usepostStore } from '../../../store/postStore';
-import router from '../../../router';
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { usepostStore } from "../../../store/postStore";
+import router from "../../../router";
 
-
-const route = useRoute()
+const route = useRoute();
 
 // Use a computed property to extract the `slug` parameter from the current route
 const id = computed(() => route.params.id);
 const postStore = usepostStore();
-postStore.deletePost(id);
-router.push('/dashboard/postcollection')
 
+const deletePost = async () => {
+  await postStore.deletePost(id);
+  router.push("/dashboard/postcollection");
+};
 
-
+deletePost();
 </script>
 <style >
-    
 </style>

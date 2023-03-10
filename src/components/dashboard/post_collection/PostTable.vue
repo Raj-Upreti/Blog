@@ -1,37 +1,36 @@
 <template>
   <div>
-    <DataTable class="display" :columns="column" :data="tableData" :options="options" ref="table">
-    </DataTable>
+    <DataTable class="display" :columns="column" :data="tableData" :options="options" ref="table"></DataTable>
   </div>
 </template>
   
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { usepostStore } from '../../../store/postStore';
-import { useblogCategory } from '../../../store/blogCategory';
-import DataTable from 'datatables.net-vue3';
-import DataTablesLib from 'datatables.net';
-import 'datatables.net-select';
-import 'datatables.net-buttons';
-
+import { ref, computed, onMounted } from "vue";
+import { usepostStore } from "../../../store/postStore";
+import { useblogCategory } from "../../../store/blogCategory";
+import DataTable from "datatables.net-vue3";
+import DataTablesLib from "datatables.net";
+import "datatables.net-select";
+import "datatables.net-buttons";
 
 const postStore = usepostStore();
 const categoryStore = useblogCategory();
 
 onMounted(async () => {
-  postStore.readAllPosts();
-  categoryStore.readAllCategory();
-  postStore.get_posts();
+   postStore.readAllPosts();
+   categoryStore.readAllCategory();
+   postStore.get_posts();
 });
 
 const tableData = computed(() => {
   var data = postStore.get_posts();
-  if (data){
-  // console.log(postStore.postList)
-  return postStore.postList;
+  if(data){
+    if(postStore.postList[0].action)
+    return postStore.postList
   }else{
-    return []
+    return [];
   }
+ 
 });
 
 DataTable.use(DataTablesLib);
@@ -43,15 +42,12 @@ const column = [
   { title: "Date", data: "post_date" },
   { title: "Category", data: "category_name" },
   { title: "Status", data: "post_status" },
-  { title: "Action", data: "action" },
+  { title: "Action", data: "action" }
 ];
-
 
 // function delete_post(){
 //   console.log("dasd")
 // }
-
-
 
 const options = {
   dom: "Bfrtip",
@@ -75,9 +71,7 @@ const options = {
     // Set the focus on the "Excerpt" cell in the row
     const excerptCell = row.querySelector("td:last-child");
     excerptCell.focus();
-  },
-
-
+  }
 };
 </script>
   
