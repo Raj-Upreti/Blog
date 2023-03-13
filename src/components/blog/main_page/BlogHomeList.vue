@@ -1,40 +1,45 @@
 <template >
     <div>
-            <div class="row mb-5" v-for="(content, index) in postList" :key="index">
-                <div class="col-lg-3">
-                    <router-link class="w-100 h-100" :to="{path: '/post/' + content.slug}">
-                        <img class="rounded-6" :src="content.image" alt="" style="width:100%; object-fit:cover; height:100%;">
-                    </router-link>
-                </div>
+        <div class="row mb-5" v-for="(content, index) in postList" :key="index">
+            <div class="col-lg-3">
+                <router-link class="w-100 h-100" :to="{ path: '/post/' + content.slug }">
+                    <img class="rounded-6" :src="content.image" alt="" style="width:100%; object-fit:cover; height:100%;">
+                </router-link>
+            </div>
 
+            <div class="col-lg-9">
+                <router-link :to="{ path: '/post/' + content.slug }" style="text-decoration:none;">
 
-                <div class="col-lg-9">
-                    
-                        <router-link :to="{path: '/post' + content.slug}" style="text-decoration:none;">
+                    <div class="h5 fw-bold mb-0" style="color:black;">{{ content.id }}. {{ content.post_title }}</div>
 
-                            <div class="h5 fw-bold mb-0" style="color:black;">{{ content.id }}. {{ content.post_title }}</div>
-                            
-                            <p class="mb-1" style="color:rgba(117, 117, 117, 1);" v-html="content.post_content"></p>
+                    <p class="mb-1" style="color:rgba(117, 117, 117, 1);" v-html="content.post_content"></p>
 
-                        </router-link>
+                </router-link>
 
-                        <div class="d-flex text-muted" style="font-size:0.8rem;">
-                            <p>{{ content.reading_time }} 12 min read</p>
-                            <p class="date">{{ content.post_date }}</p>
-                        </div>
+                <div class="d-flex text-muted" style="font-size:0.8rem;">
+                    <p>{{ content.reading_time }} 12 min read</p>
+                    <p class="date">{{ content.post_date }}</p>
                 </div>
             </div>
+        </div>
     </div>
 </template>
 
 
 <script setup>
-import { computed,onMounted} from 'vue'
+import { computed, onMounted, defineProps } from 'vue'
 import { usepostStore } from '../../../store/postStore';
 import { useblogCategory } from '../../../store/blogCategory';
 const postStore = usepostStore();
-const categoryStore= useblogCategory();
+const categoryStore = useblogCategory();
 
+
+const props = defineProps({
+    post: {
+        type: String,
+        required: true
+    }
+})
 
 onMounted(async () => {
     postStore.readAllPosts();
@@ -43,24 +48,34 @@ onMounted(async () => {
 
 
 const postList = computed(() => {
-  return postStore.postList.filter((value, index) => {
-    // Filter out the first element of the array
-    return index > 0;
-  });
+    if (props.post == "home") {
+        return postStore.postList.filter((value, index) => {
+            // Filter out the first element of the array
+            return index > 0;
+        });
+    } else {
+
+        postStore.get_posts();
+        const category = categoryStore.categories.find((value, index) => {
+            if (value.slug == props.post) {
+                return value.name
+            }
+        })
+
+        if (category != undefined) {
+            return postStore.postList.filter((value, index) => {
+                return value.category_name == category.name
+            });
+        }
+
+
+
+    }
+
 });
 
-// const postList =  postStore.postList.filter((value,index) => index > 0)
-// console.log(value, index);
-console.log(postList);
 
-// homelist
 
-// category
-
-// postData.postList.shift()
-// let posts = postData.postList;
-
-// console.log(postData.length)
 
 </script>
 

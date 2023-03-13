@@ -81,7 +81,7 @@
             <div>
               <label for="image">Featured Image</label>
               <br />
-              <input type="file" ref="fileInput" accept="image" required />
+              <input type="file" ref="fileInput" @change="onFileChange($event)"/>
             </div>
           </div>
 
@@ -119,6 +119,22 @@ import { usepostStore } from "../../store/postStore";
 import { useblogCategory } from "../../store/blogCategory";
 import router from "../../router";
 import { useRoute } from "vue-router";
+
+import cloudinary from 'cloudinary-core';
+
+// Replace 'your-cloud-name' with your actual Cloudinary cloud name.
+const cloudName = 'mediaholic-nepal';
+
+// Replace 'your-api-key' and 'your-api-secret' with your actual Cloudinary API Key and Secret.
+// const apiKey = '353428766987396';
+// const apiSecret = 'SjTPgChloMGOsXbZxEkiTKMSezM';
+
+const cloudinaryCore = new cloudinary.Cloudinary({
+  cloud_name: cloudName,
+  secure:true
+  // api_key: apiKey,
+  // api_secret: apiSecret
+});
 
 //variables
 var title = ref("");
@@ -174,11 +190,43 @@ const updateFile = () => {
   file.value = fileInput.files[0];
 };
 
+
+
+
+
+
+
+function onFileChange(event) {
+  const file = event.target.files[0];
+  uploadFile(file);
+}
+
+
+function uploadFile(file) {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  if (cloudinaryCore.uploader) {
+    cloudinaryCore.uploader.upload(formData, (error, result) => {
+      if (!error) {
+        console.log(result.secure_url);
+        // Do something with the result.secure_url, like save it to your database
+      } else {
+        console.error(error);
+      }
+    });
+  } else {
+    console.error('Cloudinary uploader is not properly initialized.');
+  }
+}
+
+
+
 function updateStore() {
   let data = {
     post_title: title.value,
     post_content: content.value.getHTML(),
-    post_excerpt: content.value.getHTML().slice(0, 10),
+    post_excerpt: content.value.getHTML().slice(0, 250),
     category_name: category.value
     // file: updateFile.value
   };

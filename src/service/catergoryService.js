@@ -6,7 +6,7 @@ class CategoryService {
     // Post Service
     async ReadAllCategory() {
         try {
-            const response= await axios.get('api/category');
+            const response= await axios.get('api/category/');
             return Promise.resolve(response.data); 
         } catch (error) {
             if(error.response && error.response.status === 400){

@@ -45,9 +45,6 @@ const column = [
   { title: "Action", data: "action" }
 ];
 
-// function delete_post(){
-//   console.log("dasd")
-// }
 
 const options = {
   dom: "Bfrtip",

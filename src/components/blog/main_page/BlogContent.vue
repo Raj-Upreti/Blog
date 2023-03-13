@@ -30,7 +30,6 @@
                     <button class="btn btn-sm shadow-0 border me-2 mb-2">About</button>
                     <button class="btn btn-sm shadow-0 border me-2 mb-2">Text to speech</button>
                 </div> -->
-
             </div>
 
             <div class="col-md-8 px-5 py-3">

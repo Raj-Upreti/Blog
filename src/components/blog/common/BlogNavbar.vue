@@ -10,20 +10,9 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
+           
             <li class="nav-item">
-              <router-link to="/" class="nav-link">Home</router-link>
-            </li>
-
-            <li class="nav-item">
-              <router-link to="/update" class="nav-link">Updates</router-link>
-            </li>
-
-            <li class="nav-item">
-              <router-link to="/write" class="nav-link">Write</router-link>
-            </li>
-            
-            <li class="nav-item">
-              <router-link to="/login" class="nav-link">LogIn</router-link>
+              <router-link to="/login" class="nav-link btn btn-primary rounded-9 px-3 text-white">LogIn</router-link>
             </li>
 
             <!-- <li class="nav-item">

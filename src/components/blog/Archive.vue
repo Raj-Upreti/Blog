@@ -13,50 +13,20 @@
                     <div class="tag-icon me-2">
                         <i class="fa-solid fa-tag fs-5"></i>
                     </div>
-                    <h2 class="fw-bold h1">Programming</h2>
+                    <h2 class="fw-bold h1">{{ archiveName }}</h2>
                 </div>
 
-                <BlogHomeList post="programming" />
+                <BlogHomeList :post='routeData' />
             </div>
             <!-- Cloumn Left End -->
 
             <!-- Cloumn Right Start -->
             <div class="col-md-5 px-4 position-sticky" style="top:6rem; height:0rem;">
-                <div class="py-4 related-topics">
-                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
-                        Python
-                    </button>
-                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
-                        Java Script
-                    </button>
-                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
-                        Software
-                    </button>
-                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
-                        Web Development
-                    </button>
-                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
-                        AI
-                    </button>
-                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
-                        Data Science
-                    </button>
-                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
-                        Machine Learning
-                    </button>
-                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
-                        Ruby
-                    </button>
-                    <button class="btn btn-light rounded-9 mb-2 text-capitalize me-2">
-                        Coding
-                    </button>
+                <div class="text fw-semibold mb-3">
+                    Explore Categories
                 </div>
-
-                <div class="section">
-                    <div class="bg-secondary w-100" style="height:27rem;">
-
-                    </div>
-                </div>
+               <BlogCategoryMenu />
+                
             </div>
             <!-- Cloumn Right End -->
         </div>
@@ -95,90 +65,51 @@
 </style>
 
 <script setup>
+import { ref, onMounted, computed } from 'vue';
 import BlogHomeList from './main_page/BlogHomeList.vue';
+import { usepostStore } from '../../store/postStore'
+import { useblogCategory } from '../../store/blogCategory';
+import { useRouter } from 'vue-router';
+
+import BlogCategoryMenu from './main_page/BlogCategoryMenu.vue';
+
+import router from '../../router';
+
+const route = useRouter();
+const postStore = usepostStore();
+const categoryStore = useblogCategory();
+
+const routeData = ref(route.currentRoute.value.params.slug);
+
+onMounted(() => {
+    categoryStore.readAllCategory();
+    postStore.readAllPosts();
+})
 
 
+const archiveName = computed(() => {
+    const data = categoryStore.categories.find((value, index) => {
+        if (value.slug == route.currentRoute.value.params.slug) {
+            return value.name
+        }
+    });
 
+    if (data != undefined) {
+        return data.name
+    }
+});
 
-const programs = [
-    {
-        image: 'https://miro.medium.com/fit/c/224/224/1*fbEzN2RUOmSc1gkcBuHdwQ.png',
-        author: 'Thanesh Pannirselvam',
-        title: 'ChatGPT for Coders: 3 Practical Ways to Optimise your Workflow',
-        details: 'Since the release of ChatGPT, I’ve seen plenty of discussion on the internet about what it might mean for the future of programming',
-        date: '11 Jan',
-        readtime: '7 min read',
-        category: 'Programming',
-    },
-    {
-        image: 'https://miro.medium.com/fit/c/224/224/1*fbEzN2RUOmSc1gkcBuHdwQ.png',
-        author: 'Thanesh Pannirselvam',
-        title: 'ChatGPT for Coders: 3 Practical Ways to Optimise your Workflow',
-        details: 'Since the release of ChatGPT, I’ve seen plenty of discussion on the internet about what it might mean for the future of programming',
-        date: '11 Jan',
-        readtime: '7 min read',
-        category: 'Programming',
-    },
+// const categoryId = computed(() => route.params.id);
 
-    {
-        image: 'https://miro.medium.com/fit/c/224/224/1*fbEzN2RUOmSc1gkcBuHdwQ.png',
-        author: 'Thanesh Pannirselvam',
-        title: 'ChatGPT for Coders: 3 Practical Ways to Optimise your Workflow',
-        details: 'Since the release of ChatGPT, I’ve seen plenty of discussion on the internet about what it might mean for the future of programming',
-        date: '11 Jan',
-        readtime: '7 min read',
-        category: 'Programming',
-    },
+// const categorySlug = computed(() => {
+//     postStore.get_posts();
+//   const category = categoryStore.categories.find(cat => cat.id === categoryId.value);
+//   return category ? category.slug : '';
+// });
 
-    {
-        image: 'https://miro.medium.com/fit/c/224/224/1*fbEzN2RUOmSc1gkcBuHdwQ.png',
-        author: 'Thanesh Pannirselvam',
-        title: 'ChatGPT for Coders: 3 Practical Ways to Optimise your Workflow',
-        details: 'Since the release of ChatGPT, I’ve seen plenty of discussion on the internet about what it might mean for the future of programming',
-        date: '11 Jan',
-        readtime: '7 min read',
-        category: 'Programming',
-    },
+// const filteredPosts = computed(() => {
+//   return postStore.postList.filter(post => post.category_name === categorySlug.value);
+// });
 
-    {
-        image: 'https://miro.medium.com/fit/c/224/224/1*fbEzN2RUOmSc1gkcBuHdwQ.png',
-        author: 'Thanesh Pannirselvam',
-        title: 'ChatGPT for Coders: 3 Practical Ways to Optimise your Workflow',
-        details: 'Since the release of ChatGPT, I’ve seen plenty of discussion on the internet about what it might mean for the future of programming',
-        date: '11 Jan',
-        readtime: '7 min read',
-        category: 'Programming',
-    },
-
-    {
-        image: 'https://miro.medium.com/fit/c/224/224/1*fbEzN2RUOmSc1gkcBuHdwQ.png',
-        author: 'Thanesh Pannirselvam',
-        title: 'ChatGPT for Coders: 3 Practical Ways to Optimise your Workflow',
-        details: 'Since the release of ChatGPT, I’ve seen plenty of discussion on the internet about what it might mean for the future of programming',
-        date: '11 Jan',
-        readtime: '7 min read',
-        category: 'Programming',
-    },
-
-    {
-        image: 'https://miro.medium.com/fit/c/224/224/1*fbEzN2RUOmSc1gkcBuHdwQ.png',
-        author: 'Thanesh Pannirselvam',
-        title: 'ChatGPT for Coders: 3 Practical Ways to Optimise your Workflow',
-        details: 'Since the release of ChatGPT, I’ve seen plenty of discussion on the internet about what it might mean for the future of programming',
-        date: '11 Jan',
-        readtime: '7 min read',
-        category: 'Programming',
-    },
-
-    {
-        image: 'https://miro.medium.com/fit/c/224/224/1*fbEzN2RUOmSc1gkcBuHdwQ.png',
-        author: 'Thanesh Pannirselvam',
-        title: 'ChatGPT for Coders: 3 Practical Ways to Optimise your Workflow',
-        details: 'Since the release of ChatGPT, I’ve seen plenty of discussion on the internet about what it might mean for the future of programming',
-        date: '11 Jan',
-        readtime: '7 min read',
-        category: 'Programming',
-    },
-]
 </script>
 
