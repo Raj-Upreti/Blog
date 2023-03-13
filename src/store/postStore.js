@@ -74,9 +74,7 @@ export const usepostStore = defineStore('postStore', {
       }
     }
 
-  //   addPost(postData) {
-  //     this.postList.push(postData);
-  // }
+
 
 }
 

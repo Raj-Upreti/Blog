@@ -24,7 +24,6 @@
             <div class="card">
               <div class="card-body py-1 px-3 d-flex justify-content-between align-items-center">
                 <div class="small fw-bold">{{ category['name'] }}</div>
-                <!-- <a href="#" class="btn  rounded-3 btn-primary">View All</a> -->
                 <a class="text-danger nav-link btn shadow-0" style="curosr:pointer;" @click.prevent="deleteCategory(category.slug)">X</a>
               </div>
             </div>
