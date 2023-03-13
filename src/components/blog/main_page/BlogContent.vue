@@ -16,7 +16,6 @@
                     <a class="text-muted me-3 mb-2">Status</a>
                     <a class="text-muted me-3 mb-2">Status</a>
                     <a class="text-muted me-3 mb-2">Status</a>
-
                 </div>
 
                 <!-- <div class="py-3">
@@ -30,7 +29,9 @@
                     <button class="btn btn-sm shadow-0 border me-2 mb-2">About</button>
                     <button class="btn btn-sm shadow-0 border me-2 mb-2">Text to speech</button>
                 </div> -->
-
+                <div class="copyRight">
+                    <p class="text-muted">Osin pvt.ltd &copy; 2023</p>
+                </div>
             </div>
 
             <div class="col-md-8 px-5 py-3">

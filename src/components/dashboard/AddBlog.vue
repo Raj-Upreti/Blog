@@ -48,9 +48,8 @@
               </div>
 
               <button
-                class="btn btn-outline-info btn-sm mt-1 px-2 py-1"
+                class="btn btn-outline-info btn-sm mt-1 px-2 py-1 w-50"
                 title="https://saauzi.com/blog/working-ways-our-company-in-summer-season"
-                v-title
               >View Post</button>
 
               <!-- <input type="text" id="" class="form-control" v-model="link" /> -->
@@ -58,12 +57,12 @@
             <hr />
             <!-- if category exist -->
             <div v-if="categoryExists">
-              <label for="category">
+              <label for="category" >
                 Add Category
                 <span class="text-danger">*</span>
               </label>
               <br />
-              <select id="select" v-model="category">
+              <select id="select" v-model="category" class="border-secondary py-2 rounded-3 w-100 border border-info" style="background:#f1f1f1;outline:none;">
                 <option value selected disabled>Select Category</option>
                 <option
                   v-for="(category,index) in categoryList"
@@ -74,7 +73,10 @@
             </div>
 
             <div v-if="!categoryExists">
-              <div class="btn btn-sm btn-primary">Add New Category</div>
+              <div>
+                <router-link to="/dashboard/categorycollection" class="text-light btn btn-sm btn-primary py-1 fs-6">
+                  Add New Category</router-link>
+              </div>
             </div>
 
             <hr />
