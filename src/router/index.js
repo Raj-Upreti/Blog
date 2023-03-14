@@ -30,6 +30,7 @@ const router = createRouter({
             { path: 'post/:slug', name: 'single-post', component: ContentDetails },
             // { path: 'ourstory', name: 'ourstory', component: Ourstory },
             { path: 'category/:slug', name: 'program', component: Archive },
+            {path: 'search/:slug',name: 'search',component: Archive,props: true}, 
             // { path: 'help', name: 'help', component: Help },
             // { path: 'write', name: 'help', component: Write },
             // { path: 'update', name: 'update', component: Updates },
