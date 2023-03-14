@@ -135,14 +135,14 @@ const successfullyAdded = ref(false);
 const isBlog = ref(false);
 
 // Replace 'your-api-key' and 'your-api-secret' with your actual Cloudinary API Key and Secret.
-// const apiKey = '353428766987396';
-// const apiSecret = 'SjTPgChloMGOsXbZxEkiTKMSezM';
+const apiKey = '353428766987396';
+const apiSecret = 'SjTPgChloMGOsXbZxEkiTKMSezM';
 
 const cloudinaryCore = new cloudinary.Cloudinary({
   cloud_name: cloudName,
-  secure: true
-  // api_key: apiKey,
-  // api_secret: apiSecret
+  secure:true,
+  api_key: apiKey,
+  api_secret: apiSecret
 });
 
 //variables
