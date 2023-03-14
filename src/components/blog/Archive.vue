@@ -88,6 +88,11 @@ onMounted(() => {
 
 
 const archiveName = computed(() => {
+    if (route.currentRoute.value.name == 'search'){
+
+        return "Search Results for '" + route.currentRoute.value.params.slug + "'";
+
+    }else{
     const data = categoryStore.categories.find((value, index) => {
         if (value.slug == route.currentRoute.value.params.slug) {
             return value.name
@@ -97,6 +102,7 @@ const archiveName = computed(() => {
     if (data != undefined) {
         return data.name
     }
+}
 });
 
 // const categoryId = computed(() => route.params.id);

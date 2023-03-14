@@ -32,37 +32,38 @@
       </div>
 
       <div class="col-lg-3 py-5 px-4" style="background-color: rgb(241, 243, 244);">
-        <form>
-          <div>
-            <div>
+        <form @submit.prevent>
+          <div class="position-relative">
+            <div
+              class="alert alert-success position-absolute w-100"
+              role="alert"
+              v-if="successfullyAdded"
+            >Successfully added !!!</div>
+            <div v-if="isBlog" class="d-flex flex-column">
               <label for="link" class="form-label">
-                Blog Link
+                Blog Link:
                 <span class="text-danger">*</span>
               </label>
 
-              <div class="d-flex">
-                <div
-                  class="text-decoration-underline text-primary text-truncate"
-                  style="font-size:0.8rem; cursor: pointer;"
-                >https://saauzi.com/blog/working-ways-our-company-in-summer-season</div>
-              </div>
-
               <button
                 class="btn btn-outline-info btn-sm mt-1 px-2 py-1 w-50"
-                title="https://saauzi.com/blog/working-ways-our-company-in-summer-season"
+                @click="clickRoute"
               >View Post</button>
-
-              <!-- <input type="text" id="" class="form-control" v-model="link" /> -->
             </div>
             <hr />
             <!-- if category exist -->
             <div v-if="categoryExists">
-              <label for="category" >
+              <label for="category">
                 Add Category
                 <span class="text-danger">*</span>
               </label>
               <br />
-              <select id="select" v-model="category" class="border-secondary py-2 rounded-3 w-100 border border-info" style="background:#f1f1f1;outline:none;">
+              <select
+                id="select"
+                v-model="category"
+                class="border-secondary py-2 rounded-3 w-100 border border-info"
+                style="background:#f1f1f1;outline:none;"
+              >
                 <option value selected disabled>Select Category</option>
                 <option
                   v-for="(category,index) in categoryList"
@@ -74,8 +75,10 @@
 
             <div v-if="!categoryExists">
               <div>
-                <router-link to="/dashboard/categorycollection" class="text-light btn btn-sm btn-primary py-1 fs-6">
-                  Add New Category</router-link>
+                <router-link
+                  to="/dashboard/categorycollection"
+                  class="text-light btn btn-sm btn-primary py-1 fs-6"
+                >Add New Category</router-link>
               </div>
             </div>
 
@@ -83,7 +86,7 @@
             <div>
               <label for="image">Featured Image</label>
               <br />
-              <input type="file" ref="fileInput" @change="onFileChange($event)"/>
+              <input type="file" ref="fileInput" @change="onFileChange($event)" />
             </div>
           </div>
 
@@ -111,7 +114,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-
+import router from "../../router";
 //Vue Quill registration locally
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
@@ -119,13 +122,17 @@ import "@vueup/vue-quill/dist/vue-quill.snow.css";
 //Importing Stores
 import { usepostStore } from "../../store/postStore";
 import { useblogCategory } from "../../store/blogCategory";
-import router from "../../router";
 import { useRoute } from "vue-router";
-
-import cloudinary from 'cloudinary-core';
+import cloudinary from "cloudinary-core";
 
 // Replace 'your-cloud-name' with your actual Cloudinary cloud name.
-const cloudName = 'mediaholic-nepal';
+const cloudName = "mediaholic-nepal";
+
+// alert
+const successfullyAdded = ref(false);
+
+// if blog is added
+const isBlog = ref(false);
 
 // Replace 'your-api-key' and 'your-api-secret' with your actual Cloudinary API Key and Secret.
 // const apiKey = '353428766987396';
@@ -133,7 +140,7 @@ const cloudName = 'mediaholic-nepal';
 
 const cloudinaryCore = new cloudinary.Cloudinary({
   cloud_name: cloudName,
-  secure:true
+  secure: true
   // api_key: apiKey,
   // api_secret: apiSecret
 });
@@ -162,18 +169,18 @@ const id = computed(() => route.params.id);
 
 if (id.value != "undefined") {
   const posts = postStore.postList;
-  console.log(posts);
+  // console.log(posts);
   const object = posts.find(item => item.id === id.value);
-  console.log(object);
+  // console.log(object);
   // quill
   // category
 }
 
 // END
 // ==============================================================
-onMounted(async()=>{
-    await categoryStore.readAllCategory()
-})
+onMounted(async () => {
+  await categoryStore.readAllCategory();
+});
 
 var categoryExists = computed(() => {
   if (categoryStore.categories.length === 0) {
@@ -192,37 +199,28 @@ const updateFile = () => {
   file.value = fileInput.files[0];
 };
 
-
-
-
-
-
-
 function onFileChange(event) {
   const file = event.target.files[0];
   uploadFile(file);
 }
 
-
 function uploadFile(file) {
   const formData = new FormData();
-  formData.append('file', file);
+  formData.append("file", file);
 
   if (cloudinaryCore.uploader) {
     cloudinaryCore.uploader.upload(formData, (error, result) => {
       if (!error) {
-        console.log(result.secure_url);
+        // console.log(result.secure_url);
         // Do something with the result.secure_url, like save it to your database
       } else {
         console.error(error);
       }
     });
   } else {
-    console.error('Cloudinary uploader is not properly initialized.');
+    console.error("Cloudinary uploader is not properly initialized.");
   }
 }
-
-
 
 function updateStore() {
   let data = {
@@ -232,10 +230,7 @@ function updateStore() {
     category_name: category.value
     // file: updateFile.value
   };
-
-  console.log(data);
-
-//   this need to be solved
+  //   this need to be solved
   if (
     data.post_title == "" ||
     data.post_content == "" ||
@@ -247,12 +242,43 @@ function updateStore() {
     }
     return false;
   }
+  if (
+    data.post_title != "" ||
+    data.post_content != "" ||
+    data.category_name != ""
+  ) {
+    successfullyAdded.value = true;
+    isBlog.value = true;
+    setTimeout(() => {
+      successfullyAdded.value = false;
+    }, 1000);
+  }
 
   //Updating store
-
   postStore.createPost(data);
+  // Clear input fields
+  title.value = "";
+  content.value = "";
+  category.value = "";
+}
 
-  router.push("/dashboard/postcollection");
+// when route is clicked
+// when route is clicked
+function clickRoute() {
+  const data = {
+    post_title: title.value,
+    post_content: content.value.getHTML(),
+    post_excerpt: content.value.getHTML().slice(0, 250),
+    category_name: category.value
+  };
+
+  // format post title for URL and remove trailing spaces
+  const formattedPostTitle = encodeURIComponent(
+    data.post_title.trim().replace(/\s+/g, "-")
+  );
+
+  // navigate to corresponding post page
+  router.push(`/post/${formattedPostTitle}`);
 }
 </script>
 

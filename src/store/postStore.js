@@ -54,7 +54,6 @@ export const usepostStore = defineStore('postStore', {
             const response = await PostService.createPost(data)
             console.log(response);
             this.postList.push(response);
-            router.push('/dashboard/postcollection')
           } catch (error) {
             console.log(error)
             // handle the error here
