@@ -1,6 +1,8 @@
 
 <template>
-    <div>
+    <Suspense>
+        <template #default>
+            <div>
         <!-- // Blog Banner -->
         <BlogBanner />
 
@@ -10,6 +12,13 @@
         <!-- // Blog Content List Section  -->
         <BlogContent />
     </div>
+        </template>
+
+        <template #fallback>
+            loading........
+        </template>
+    
+</Suspense>
 </template>
 
 

@@ -83,7 +83,7 @@
             <div>
               <label for="image">Featured Image</label>
               <br />
-              <input type="file" ref="fileInput" @change="onFileChange($event)"/>
+              <input type="file" ref="file" @change="onFileChange"/>
             </div>
           </div>
 
@@ -119,30 +119,32 @@ import "@vueup/vue-quill/dist/vue-quill.snow.css";
 //Importing Stores
 import { usepostStore } from "../../store/postStore";
 import { useblogCategory } from "../../store/blogCategory";
+import axios from "axios";
 import router from "../../router";
 import { useRoute } from "vue-router";
 
-import cloudinary from 'cloudinary-core';
+// import cloudinary from 'cloudinary-core';
 
 // Replace 'your-cloud-name' with your actual Cloudinary cloud name.
-const cloudName = 'mediaholic-nepal';
+// const cloudName = 'mediaholic-nepal';
 
 // Replace 'your-api-key' and 'your-api-secret' with your actual Cloudinary API Key and Secret.
-const apiKey = '353428766987396';
-const apiSecret = 'SjTPgChloMGOsXbZxEkiTKMSezM';
+// const apiKey = '353428766987396';
+// const apiSecret = 'SjTPgChloMGOsXbZxEkiTKMSezM';
 
-const cloudinaryCore = new cloudinary.Cloudinary({
-  cloud_name: cloudName,
-  secure:true,
-  api_key: apiKey,
-  api_secret: apiSecret
-});
+// const cloudinaryCore = new cloudinary.Cloudinary({
+//   cloud_name: cloudName,
+//   api_key: apiKey,
+//   api_secret: apiSecret,
+//   secure:true
+// });
 
 //variables
 var title = ref("");
 var content = ref("");
 const file = ref(null);
 const category = ref("");
+const fileInput= ref(null);
 
 const postStore = usepostStore();
 const categoryStore = useblogCategory();
@@ -192,34 +194,34 @@ const updateFile = () => {
   file.value = fileInput.files[0];
 };
 
-
-
-
-
-
-
-function onFileChange(event) {
+async function onFileChange(event) {
+  console.log(event);
   const file = event.target.files[0];
   uploadFile(file);
 }
 
 
-function uploadFile(file) {
+async function uploadFile(file) {
   const formData = new FormData();
-  formData.append('file', file);
+  formData.append('file', file)
+  await axios.post('api/post/')
+    .then(res => {
+      console.log('jsbkjnkjnk');
+      console.log(res.data);
+    })
 
-  if (cloudinaryCore.uploader) {
-    cloudinaryCore.uploader.upload(formData, (error, result) => {
-      if (!error) {
-        console.log(result.secure_url);
-        // Do something with the result.secure_url, like save it to your database
-      } else {
-        console.error(error);
-      }
-    });
-  } else {
-    console.error('Cloudinary uploader is not properly initialized.');
-  }
+//   if (cloudinaryCore.uploader) {
+//     cloudinaryCore.uploader.upload(formData, (error, result) => {
+//       if (!error) {
+//         console.log(result.secure_url);
+//         // Do something with the result.secure_url, like save it to your database
+//       } else {
+//         console.error(error);
+//       }
+//     });
+//   } else {
+//     console.error('Cloudinary uploader is not properly initialized.');
+//   }
 }
 
 
