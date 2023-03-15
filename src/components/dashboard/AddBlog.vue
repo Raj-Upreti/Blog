@@ -30,6 +30,7 @@
           </form>
         </div>
       </div>
+      
 
       <div class="col-lg-3 py-5 px-4" style="background-color: rgb(241, 243, 244);">
         <form @submit.prevent>
@@ -116,18 +117,19 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import router from "../../router";
+
+
 //Vue Quill registration locally
 import { QuillEditor } from "@vueup/vue-quill";
 import "@vueup/vue-quill/dist/vue-quill.snow.css";
-import axios from "axios";
+
+
+
 //Importing Stores
 import { usepostStore } from "../../store/postStore";
 import { useblogCategory } from "../../store/blogCategory";
-import { useRoute } from "vue-router";
-// import cloudinary from "cloudinary-core";
 
-// Replace 'your-cloud-name' with your actual Cloudinary cloud name.
-// const cloudName = "mediaholic-nepal";
+
 
 // alert
 const successfullyAdded = ref(false);
@@ -135,51 +137,18 @@ const successfullyAdded = ref(false);
 // if blog is added
 const isBlog = ref(false);
 
-// Replace 'your-api-key' and 'your-api-secret' with your actual Cloudinary API Key and Secret.
-// const apiKey = '353428766987396';
-// const apiSecret = 'SjTPgChloMGOsXbZxEkiTKMSezM';
-
-// const cloudinaryCore = new cloudinary.Cloudinary({
-//   cloud_name: cloudName,
-//   api_key: apiKey,
-//   api_secret: apiSecret,
-//   secure:true
-// });
 
 //variables
 var title = ref("");
 var content = ref("");
 const file = ref(null);
 const category = ref("");
-const fileInput= ref(null);
+
 
 const postStore = usepostStore();
 const categoryStore = useblogCategory();
 
-/*
- *   ==============================================================
- *   This is the code block for the editing the post.
- *   If you come to this page via /dashboard/addblog,
- *   this function will not run
- *   ==============================================================
- *   Start
- */
 
-const route = useRoute();
-// Use a computed property to extract the `id` parameter from the current route
-const id = computed(() => route.params.id);
-
-if (id.value != "undefined") {
-  const posts = postStore.postList;
-  // console.log(posts);
-  const object = posts.find(item => item.id === id.value);
-  // console.log(object);
-  // quill
-  // category
-}
-
-// END
-// ==============================================================
 onMounted(async () => {
   await categoryStore.readAllCategory();
 });
@@ -197,7 +166,6 @@ const categoryList = computed(() => {
 });
 
 function onFileChange(event) {
-  // console.log(event);
   file.value = event.target.files[0];
   // console.log(file.value);
 }
@@ -242,7 +210,7 @@ function updateStore() {
   category.value = "";
 }
 
-// when route is clicked
+
 // when route is clicked
 function clickRoute() {
   const data = {
