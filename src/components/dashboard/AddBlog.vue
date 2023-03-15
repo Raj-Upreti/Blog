@@ -197,8 +197,9 @@ const categoryList = computed(() => {
 });
 
 function onFileChange(event) {
-  console.log(event);
+  // console.log(event);
   file.value = event.target.files[0];
+  // console.log(file.value);
 }
 
 function updateStore() {
@@ -207,7 +208,7 @@ function updateStore() {
     post_content: content.value.getHTML(),
     post_excerpt: content.value.getHTML().slice(0, 250),
     category_name: category.value,
-    file: file.value
+    post_image: file.value.name
   };
   //   this need to be solved
   if (
