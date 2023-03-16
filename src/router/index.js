@@ -17,6 +17,7 @@ import Dashboard from '../view/Dashboard.vue';
 import DeletePost from "../components/dashboard/post_collection/DeletePost.vue";
 import PrivacyPolicy from '../components/blog/PrivacyPolicy.vue';
 import ContactUs from '../components/blog/ContactUs.vue';
+import EditBlog from '../components/dashboard/EditBlog.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -48,9 +49,9 @@ const router = createRouter({
             children: [
                 { path:'', name:'dashboardhome', component:DashboardHome },
                 { path: 'post/delete/:id', name: 'PostCollection1', component: DeletePost},
-                { path: 'post/edit/:id', name:'edit-blog', component: AddBlog},
                 { path: 'postcollection', name: 'PostCollection', component: PostCollection},
                 { path: 'categorycollection', name: 'CategoryCollection',component: CategoryCollection},
+                { path: 'post/edit/:id', name:'edit-blog', component: EditBlog},
                 { path: 'addblog', name:'addblog', component: AddBlog},
             ]
         },

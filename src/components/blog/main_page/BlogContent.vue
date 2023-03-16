@@ -30,7 +30,6 @@
                     <button class="btn btn-sm shadow-0 border me-2 mb-2">About</button>
                     <button class="btn btn-sm shadow-0 border me-2 mb-2">Text to speech</button>
                 </div> -->
-
                 <div class="copyRight">
                     <p class="text-muted">Osin pvt.ltd &copy; 2023</p>
                 </div>

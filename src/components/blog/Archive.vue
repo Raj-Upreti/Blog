@@ -73,8 +73,6 @@ import { useRouter } from 'vue-router';
 
 import BlogCategoryMenu from './main_page/BlogCategoryMenu.vue';
 
-import router from '../../router';
-
 const route = useRouter();
 const postStore = usepostStore();
 const categoryStore = useblogCategory();

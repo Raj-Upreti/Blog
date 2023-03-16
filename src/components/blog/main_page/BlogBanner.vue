@@ -4,7 +4,7 @@
            
             <div v-if="content.post_image" class="col-md-8" >
                  <router-link :to="{path: '/post/' + content.slug}">
-                      <img class="rounded-9 border" :src="content.post_image"  style="width:100%; object-fit:cover; height:27rem;"> 
+                      <img class="rounded-9 border" :src="content.post_image"  style="width:100%; object-fit:contain; height:27rem;"> 
                 </router-link>  
                 
             </div>
@@ -12,7 +12,7 @@
              <div v-if="content.post_image" class="col-md-4"  style="font-size:1rem;">
                 <router-link :to="{path: '/post/' + content.slug}" style="text-decoration:none; color:black;">
                    <div class="d-flex pb-2 align-items-center">
-                     <p class="fw-bold">{{ content. reading_time}}</p>
+                     <p class="">{{ content. reading_time}}</p>
                     <div style="padding: 0 0.5rem;">|</div>
                     <p>{{ content.post_date_gmt }}</p>
                    </div>
@@ -58,7 +58,7 @@ const post = computed(() => {
     return index == 0;
   });
 });
-console.log(post);
+
  
 
 

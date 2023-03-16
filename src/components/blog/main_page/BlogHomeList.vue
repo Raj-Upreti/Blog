@@ -2,12 +2,12 @@
   <div>
     <div class="row mb-5" v-for="(content, index) in postList" :key="index">
       <div class="col-lg-3">
-        <router-link class="w-100 h-100" :to="{ path: '/post/' + content.slug }">
+        <router-link class="w-100 h-100" :to="{ path: '/post/' + content.slug }" >
           <img
             class="rounded-6"
-            :src="content.image"
+            :src="content.post_image"
             alt
-            style="width:100%; object-fit:cover; height:100%;"
+            style="width:100%; object-fit:contain; height:100%;"
           />
         </router-link>
       </div>
@@ -23,7 +23,7 @@
         </router-link>
 
         <div class="d-flex text-muted" style="font-size:0.8rem;">
-          <p>{{ content.reading_time }} 12 min read</p>
+          <p>{{ content.reading_time }} read </p>
           <p class="date">{{ content.post_date }}</p>
         </div>
       </div>
@@ -53,6 +53,7 @@ onMounted(async () => {
   postStore.readAllPosts();
   categoryStore.readAllCategory();
 });
+
 
 const postList = computed(() => {
   if (props.post == "home") {
