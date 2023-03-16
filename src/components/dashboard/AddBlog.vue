@@ -191,16 +191,12 @@ function updateStore() {
 
   router.push('/dashboard/postcollection');
   // Clear input fields
-<<<<<<< HEAD
-} 
-=======
   title.value = "";
   content.value = "";
   category.value = "";
 
 }
 
->>>>>>> b510bab1c2387f9380abd7a7a298748f3be9a586
 
 // when route is clicked
 function clickRoute() {

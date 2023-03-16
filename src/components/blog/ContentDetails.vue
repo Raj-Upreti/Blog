@@ -8,29 +8,21 @@
             <p>{{ data.post_date }}</p> &nbsp; || &nbsp; 
             <p>{{ data.reading_time }}</p>
           </div>
-          <h2>
+          <h2 class="py-3">
             {{ data.post_title }}
           </h2>
           <div class="img">
             <img :src="data.post_image" style="width:100%">
           </div>
-          <div class="content">
+          <div class="content py-5">
             <p>{{ data.post_content }}</p>
           </div>
         </div>
       </div>
-      <div class="col-md-4 p-4 position-sticky" style="top:6rem; height:0rem;">
+      <div class="col-md-4 p-4 " style="top:6rem; height:0rem;">
         <div class="h5 fw-bold">More from Pasal</div>
         <hr />
-        <div class="row pb-3 align-items-center" v-for="(blog, index) in blogs" :key="index">
-          <div class="col-md-8">
-            <!-- <p class="mb-2">{{ blog.author }}</p> -->
-            <h6 class="fw-bold">{{ blog.title }}</h6>
-          </div>
-          <div class="col-md-4">
-            <img :src="blog.image" alt style="width:80%; object-fit:cover; height:5rem;" />
-          </div>
-        </div>
+        <BlogHomeList :post="routeData"/>
       </div>
     </div>
   </div>
@@ -41,10 +33,11 @@ import { ref, onMounted, computed } from "vue";
 import axios from "axios";
 import { usepostStore } from "../../store/postStore";
 import { useRouter } from "vue-router";
+import BlogHomeList from "./main_page/BlogHomeList.vue";
 
 const route = useRouter();
 const postStore = usepostStore();
-const content = ref(null);
+const routeData = ref('');
 
 
 const postList = computed(() => {
@@ -52,6 +45,11 @@ const postList = computed(() => {
     const filteredList = postStore.postList.filter((data) => {
       return data.slug === route.currentRoute.value.params.slug;
     });
+    
+    if (filteredList[0] != undefined){
+      routeData.value = filteredList[0]['category_name']
+    }
+  
     return filteredList;
   } else {
     return postStore.postList;

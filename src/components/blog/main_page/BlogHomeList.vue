@@ -19,7 +19,7 @@
             style="color:black;"
           >{{ content.id }}. {{ content.post_title }}</div>
 
-          <p class="mb-1" style="color:rgba(117, 117, 117, 1);" v-html="content.post_content"></p>
+          <p class="mb-1" style="color:rgba(117, 117, 117, 1);" v-html="content.post_excerpt"></p>
         </router-link>
 
         <div class="d-flex text-muted" style="font-size:0.8rem;">
@@ -68,7 +68,7 @@ const postList = computed(() => {
       // category filter
       postStore.get_posts();
       const category = categoryStore.categories.find((value, index) => {
-        if (value.slug == props.post) {
+        if (value.slug == props.post || value.name == props.post) {
           return value.name;
         }
       });
