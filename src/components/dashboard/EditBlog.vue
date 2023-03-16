@@ -19,8 +19,7 @@
                                 Blog Content
                                 <span class="text-danger">*</span>
                             </label>
-                            <QuillEditor :modelValue="content" ref="myEditorRef" style="height:33rem;" name="content"
-                                required />
+                            <QuillEditor ref="myEditorRef" style="height:33rem;" name="content" required />
                         </div>
                     </form>
                 </div>
@@ -67,9 +66,9 @@
 
                         <hr />
                         <div>
-                            <div v-if="file">
+                            <div v-if="featured">
                                 <div class="card" style="width:10rem; height:10rem;">
-                                    <img :src="file" alt="" style="height:100%; width:100%; object-fit:cover">
+                                    <img :src="featured" alt="" style="height:100%; width:100%; object-fit:cover">
                                 </div>
                             </div>
 
@@ -84,7 +83,7 @@
 
                     <div class="mt-5">
                         <div class="d-flex w-100 mb-3">
-                            <button class="btn btn-primary rounded-3 w-100" @click.prevent="updateStore"
+                            <button class="btn btn-primary rounded-3 w-100" @click.prevent="updateBlog"
                                 style="font-size:1rem;">Update Blog</button>
                         </div>
 
@@ -99,10 +98,8 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import router from "../../router";
 import { usepostStore } from "../../store/postStore";
 import { useblogCategory } from "../../store/blogCategory";
-
 
 //Vue Quill registration locally
 import { QuillEditor } from "@vueup/vue-quill";
@@ -110,53 +107,78 @@ import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 import { useRoute } from "vue-router";
 import axios from "axios";
+import router from "../../router";
 
-
-// if blog is added
-const isBlog = ref(false);
 
 const route = useRoute();
-const postStore = usepostStore();
 const categoryStore = useblogCategory();
 
 const myEditorRef = ref(null);
 const title = ref('');
-const content = ref('');
+// const content = ref('');
 const category = ref('');
-const file = ref(null);
+const file = ref(''); //object
+const featured = ref('') //url
 
+// if blog is added
+const isBlog = ref(false);
+// alert
+const successfullyAdded = ref(false);
 
-const data = ref(null);
-console.log
 
 onMounted(() => {
+    categoryStore.readAllCategory();
     const postId = route.params.id;
     axios.get(`/api/post/${postId}`)
         .then(res => {
-            data.value = res.data;
-            console.log(data.value);
-            title.value = data.value.post_title;
-            // content.value = data.value.post_content;
-            category.value = data.value.category_name;
-            file.value = data.value.post_image;
-
-            console.log(myEditorRef.value);
-
-            // if (myEditorRef.value && myEditorRef.value.quill) {
-            //     myEditorRef.value.quill.on('ready', () => {
-            //         myEditorRef.value.quill.setContents([{ insert: data.post_content }])
-            //     })    
-            // }    
+            var data = res.data;
+            title.value = data.post_title;
+            // content.value = data.post_content;
+            category.value = data.category_name;
+            featured.value = data.post_image;
+            myEditorRef.value.setHTML(data.post_content)
         })
         .catch(error => {
             console.log(error);
         })
-})
-
-
-onMounted(async () => {
-    await categoryStore.readAllCategory();
 });
+
+function onFileChange(event) {
+  // console.log(event);
+  file.value = event.target.files[0];
+  // console.log(file.value);
+}
+
+function updateBlog() {
+    const postId = route.params.id;
+
+
+
+    const formData = new FormData();
+    if (file.value != null) {
+        formData.append('post_image', file.value);
+    }
+    formData.append('post_title', title.value)
+    formData.append('post_content', myEditorRef.value.getHTML())
+    formData.append('post_excerpt', myEditorRef.value.getHTML().slice(0, 250))
+    formData.append('category_name', category.value)
+
+    // const updated
+    for (const [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
+
+    axios.put(`/api/post/${postId}/`, formData)
+        .then(res => {
+            const data = res.data;
+            console.log(data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+    router.push('/dashboard/postcollection');
+}
 
 
 var categoryExists = computed(() => {
@@ -171,14 +193,7 @@ var categoryExists = computed(() => {
 const categoryList = computed(() => {
     return categoryStore.categories;
 });
-
-
-
-// alert
-const successfullyAdded = ref(false);
-
 </script>
-
 
 
 <style scoped>

@@ -18,7 +18,7 @@ class PostService {
     }
 
     async createPost(data){
-        return axios.post('api/post/', data)
+        return await axios.post('api/post/', data)
           .then(response => {
             return Promise.resolve(response.data);
           })
@@ -28,7 +28,7 @@ class PostService {
     }
     
     async deletePost(id){
-      return axios.delete(`/api/post/${id}`)
+      return await axios.delete(`api/post/${id}`)
         .then(res => {
           return Promise.resolve(res.data);
         })

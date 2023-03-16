@@ -51,8 +51,6 @@ export const usepostStore = defineStore('postStore', {
         }
       },  
 
-    
-
     async createPost(data) {
       console.log(data);
         try {
@@ -77,10 +75,5 @@ export const usepostStore = defineStore('postStore', {
         console.log(error);
       }
     }
-
-
-
-}
-
-   
+}  
 })

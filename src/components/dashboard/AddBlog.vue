@@ -11,13 +11,7 @@
                 Enter Title
                 <span class="text-danger">*</span>
               </label>
-              <input
-                type="text"
-                class="form-control form-input"
-                name="title"
-                v-model="title"
-                required
-              />
+              <input type="text" class="form-control form-input" name="title" v-model="title" required />
             </div>
 
             <div for="content" class="py-3">
@@ -30,27 +24,21 @@
           </form>
         </div>
       </div>
-      
+
 
       <div class="col-lg-3 py-5 px-4" style="background-color: rgb(241, 243, 244);">
         
         <form @submit.prevent>
           <div class="position-relative">
-            <div
-              class="alert alert-success position-absolute w-100"
-              role="alert"
-              v-if="successfullyAdded"
-            >Successfully added !!!</div>
+            <div class="alert alert-success position-absolute w-100" role="alert" v-if="successfullyAdded">Successfully
+              added !!!</div>
             <div v-if="isBlog" class="d-flex flex-column">
               <label for="link" class="form-label">
                 Blog Link:
                 <span class="text-danger">*</span>
               </label>
 
-              <button
-                class="btn btn-outline-info btn-sm mt-1 px-2 py-1 w-50"
-                @click="clickRoute"
-              >View Post</button>
+              <button class="btn btn-outline-info btn-sm mt-1 px-2 py-1 w-50" @click="clickRoute">View Post</button>
             </div>
             <hr />
             <!-- if category exist -->
@@ -60,27 +48,18 @@
                 <span class="text-danger">*</span>
               </label>
               <br />
-              <select
-                id="select"
-                v-model="category"
-                class="border-secondary py-2 rounded-3 w-100 border border-info"
-                style="background:#f1f1f1;outline:none;"
-              >
+              <select id="select" v-model="category" class="border-secondary py-2 rounded-3 w-100 border border-info"
+                style="background:#f1f1f1;outline:none;">
                 <option value selected disabled>Select Category</option>
-                <option
-                  v-for="(category,index) in categoryList"
-                  :key="index"
-                  :value="category.id"
-                >{{ category.name }}</option>
+                <option v-for="(category, index) in categoryList" :key="index" :value="category.id">{{ category.name }}
+                </option>
               </select>
             </div>
 
             <div v-if="!categoryExists">
               <div>
-                <router-link
-                  to="/dashboard/categorycollection"
-                  class="text-light btn btn-sm btn-primary py-1 fs-6"
-                >Add New Category</router-link>
+                <router-link to="/dashboard/categorycollection" class="text-light btn btn-sm btn-primary py-1 fs-6">Add
+                  New Category</router-link>
               </div>
             </div>
 
@@ -88,25 +67,18 @@
             <div>
               <label for="image">Featured Image</label>
               <br />
-              <input type="file" ref="file" @change="onFileChange"/>
-              <!-- <input type="file" ref="fileInput" @change="onFileChange()" /> -->
+              <input type="file" ref="file" @change="onFileChange" />
             </div>
           </div>
 
           <div class="mt-5">
             <div class="d-flex w-100 mb-3">
-              <button
-                class="btn btn-primary rounded-3 w-100"
-                @click.prevent="updateStore"
-                style="font-size:1rem;"
-              >Publish Blog</button>
+              <button class="btn btn-primary rounded-3 w-100" @click.prevent="updateStore" style="font-size:1rem;">Publish
+                Blog</button>
             </div>
             <div>
-              <button
-                class="btn btn-secondary rounded-3 w-100 border border-info"
-                @click.prevent="updateStore"
-                style="font-size:1rem;"
-              >Save as Draft</button>
+              <button class="btn btn-secondary rounded-3 w-100 border border-info" @click.prevent="updateStore"
+                style="font-size:1rem;">Save as Draft</button>
             </div>
           </div>
         </form>
@@ -146,6 +118,7 @@ const file = ref(null);
 const category = ref("");
 
 
+
 const postStore = usepostStore();
 const categoryStore = useblogCategory();
 
@@ -167,18 +140,28 @@ const categoryList = computed(() => {
 });
 
 function onFileChange(event) {
+  // console.log(event);
   file.value = event.target.files[0];
   // console.log(file.value);
 }
 
 function updateStore() {
+
+  const formData = new FormData();
+  formData.append('post_image', file.value);
+  formData.append('post_title', title.value)
+  formData.append('post_content', content.value.getHTML())
+  formData.append('post_excerpt', content.value.getHTML().slice(0,250))
+  formData.append('category_name', category.value)
+  
   let data = {
     post_title: title.value,
     post_content: content.value.getHTML(),
     post_excerpt: content.value.getHTML().slice(0, 250),
     category_name: category.value,
-    post_image: file.value.name
   };
+  
+
   //   this need to be solved
   if (
     data.post_title == "" ||
@@ -204,9 +187,20 @@ function updateStore() {
   }
 
   //Updating store
-  postStore.createPost(data);
+  postStore.createPost(formData);
+
+  router.push('/dashboard/postcollection');
   // Clear input fields
+<<<<<<< HEAD
 } 
+=======
+  title.value = "";
+  content.value = "";
+  category.value = "";
+
+}
+
+>>>>>>> b510bab1c2387f9380abd7a7a298748f3be9a586
 
 // when route is clicked
 function clickRoute() {
@@ -253,52 +247,4 @@ function clickRoute() {
 }
 </style> 
 
-
-<!-- 
-<template>
-  <div>
-    <h1>Create Post</h1>
-    <form @submit.prevent="submitPost">
-      <div>
-        <label for="postTitle">Post Title:</label>
-        <input type="text" id="postTitle" v-model="postTitle" required>
-      </div>
-      <div>
-        <label for="postDescription">Post Description:</label>
-        <textarea id="postDescription" v-model="postDescription" required></textarea>
-      </div>
-      <div>
-        <label for="postImage">Post Image:</label>
-        <input type="file" id="postImage" @change="uploadImage">
-      </div>
-      <button type="submit">Create Post</button>
-    </form>
-  </div>
-</template>
-
-<script setup>
-import axios from 'axios';
-
-const postTitle = ref('');
-const postDescription = ref('');
-const postImage = ref(null);
-
-const submitPost = async () => {
-  const formData = new FormData();
-  formData.append('postTitle', postTitle.value);
-  formData.append('postDescription', postDescription.value);
-  formData.append('postImage', postImage.value);
-  try {
-    const response = await axios.post('/api/post', formData);
-    console.log(response.data);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-const uploadImage = (event) => {
-  const file = event.target.files[0];
-  postImage.value = file;
-};
-</script> -->
 

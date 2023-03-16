@@ -6,20 +6,23 @@
                 <div class="card py-2">
                     <form class=" px-3" @submit.prevent="handleSubmit">
                         <p class="text-center h5 fw-bold">Feel free to reach us!!</p>
-                        <div class="pt-2">
-                            <label for="firstname" class="form-label">
-                                First Name
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" class="form-control form-input" name="firstname">
-                        </div>
 
-                        <div class="pt-4">
-                            <label for="lastname" class="form-label">
-                                Last Name
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" class="form-control form-input" name="lastname">
+                        <div class="row">
+                            <div class="pt-2 col-lg-6">
+                                <label for="firstname" class="form-label">
+                                    First Name
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control form-input" name="firstname">
+                            </div>
+
+                            <div class="pt-2 col-lg-6">
+                                <label for="lastname" class="form-label">
+                                    Last Name
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control form-input" name="lastname">
+                            </div>
                         </div>
 
                         <div class="pt-4">

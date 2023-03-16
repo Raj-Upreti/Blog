@@ -1,7 +1,7 @@
 import axios from 'axios';
 const accessToken = JSON.parse(localStorage.getItem('access_token')) || null;
-axios.defaults.baseURL = 'https://blog.saauzi.com/';
-// axios.defaults.baseURL = 'http://127.0.0.1:8000/';
+// axios.defaults.baseURL = 'https://blog.saauzi.com/';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/';
 
 // accesstoken get
 if (accessToken) {
