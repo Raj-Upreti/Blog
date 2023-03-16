@@ -260,9 +260,8 @@ function updateStore() {
   title.value = "";
   content.value = "";
   category.value = "";
-}
+} 
 
-// when route is clicked
 // when route is clicked
 function clickRoute() {
   const data = {

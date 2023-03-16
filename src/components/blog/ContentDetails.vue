@@ -7,7 +7,7 @@
                     <div style="font-size:1.5rem; font-family:'Times New Roman', Times, serif">
                         <p class="py-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut laudantium esse debitis ex nesciunt, suscipit fuga repudiandae officia corrupti recusandae dolore animi atque, quae, ullam tempore ipsam sunt adipisci blanditiis?</p>
 
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non neque nisi obcaecati cupiditate
+                        <p>em ipsum dolor, sit amet consectetur adipisicing elit. Non neque nisi obcaecati cupiditate
                             voluptates repellendus id quidem ad laboriosam adipisci ea quas qui perspiciatis ratione
                             veritatis molestiae ut enim, maxime ab. Quod, nihil tenetur! Inventore exercitationem
                             voluptate pariatur culpa. Porro dignissimos voluptas reprehenderit aut impedit, quos
