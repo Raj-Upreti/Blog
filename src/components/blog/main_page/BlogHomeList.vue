@@ -2,7 +2,7 @@
   <div>
     <div class="row mb-5" v-for="(content, index) in postList" :key="index">
       <div class="col-lg-3">
-        <router-link class="w-100 h-100" :to="{ path: '/post/' + content.slug }">
+        <router-link class="w-100 h-100" :to="{ path: '/post/' + content.slug }" >
           <img
             class="rounded-6"
             :src="content.post_image"
@@ -19,7 +19,7 @@
             style="color:black;"
           >{{ content.post_title }}</div>
 
-          <p class="mb-1" style="color:rgba(117, 117, 117, 1);" v-html="content.post_content"></p>
+          <p class="mb-1" style="color:rgba(117, 117, 117, 1);" v-html="content.post_excerpt"></p>
         </router-link>
 
         <div class="d-flex text-muted" style="font-size:0.8rem;">
@@ -54,6 +54,7 @@ onMounted(async () => {
   categoryStore.readAllCategory();
 });
 
+
 const postList = computed(() => {
   if (props.post == "home") {
     return postStore.postList.filter((value, index) => {
@@ -67,7 +68,7 @@ const postList = computed(() => {
       // category filter
       postStore.get_posts();
       const category = categoryStore.categories.find((value, index) => {
-        if (value.slug == props.post) {
+        if (value.slug == props.post || value.name == props.post) {
           return value.name;
         }
       });

@@ -27,6 +27,7 @@
 
 
       <div class="col-lg-3 py-5 px-4" style="background-color: rgb(241, 243, 244);">
+        
         <form @submit.prevent>
           <div class="position-relative">
             <div class="alert alert-success position-absolute w-100" role="alert" v-if="successfullyAdded">Successfully
@@ -219,7 +220,6 @@ function clickRoute() {
   const formattedPostTitle = encodeURIComponent(
     data.post_title.trim().replace(/\s+/g, "-")
   );
-
   // navigate to corresponding post page
   router.push(`/post/${formattedPostTitle}`);
 }

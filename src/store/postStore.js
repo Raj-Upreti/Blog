@@ -5,11 +5,13 @@ import { useblogCategory } from './blogCategory';
 
 export const usepostStore = defineStore('postStore', {
     state: () => ({
-        postList: []
+        postList: [],
     }),
 
     getters: {
-      // getPosts: get_post_list(),
+      // getPostById: (state) => (id) => {
+      //   return state.postList.find((post) => post.id === id);
+      // },
     },
 
     actions: {
@@ -38,8 +40,11 @@ export const usepostStore = defineStore('postStore', {
 
     async readAllPosts() {
         try {
-          const response = await PostService.readAllPost()
-          this.postList = response;
+          await PostService.readAllPost()
+          .then((response)=>{
+            this.postList = response;
+
+          })
         } catch (error) {
           console.log(error)
           // handle the error here
