@@ -4,7 +4,7 @@
            
             <div v-if="content.post_image" class="col-md-8" >
                  <router-link :to="{path: '/post/' + content.slug}">
-                      <img class="rounded-9 border" :src="content.post_image"  style="width:100%; object-fit:contain; height:27rem;"> 
+                      <img class="rounded-9 border" :src="content.post_image"  style="width:100%; object-fit:cover; height:27rem;"> 
                 </router-link>  
                 
             </div>
@@ -17,7 +17,7 @@
                     <p>{{ content.post_date_gmt }}</p>
                    </div>
                    <p class="h3 fw-bold" style="line-height: 1.5">{{ content.post_title }}</p>
-                   <p class="pt-2 text-muted" style="font-size:1.2rem;">{{ content.post_excerpt}}</p> 
+                   <p class="pt-2 text-muted" style="font-size:1.2rem;" v-html="content.post_excerpt"></p> 
                 </router-link>
             </div> 
 
@@ -29,7 +29,7 @@
                     <p>{{ content.post_date_gmt }}</p>
                    </div>
                    <p class="h3 fw-bold" style="line-height: 1.5">{{ content.post_title }}</p>
-                   <p class="pt-2 text-muted" style="font-size:1.2rem;">{{ content.post_excerpt}}</p> 
+                   <p class="pt-2 text-muted" style="font-size:1.2rem;" v-html="content.post_excerpt"></p> 
                 </router-link>
             </div> 
 

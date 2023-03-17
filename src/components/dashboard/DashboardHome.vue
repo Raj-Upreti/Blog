@@ -11,7 +11,7 @@
                                     <img :src="data.image" class="pe-2" style="width:15%; object-fit:contain;" />
                                     <p>{{ data.name }}</p>
                                 </div>
-                                <p class="fs-1 fw-bold">{{ data.number }}</p>
+                                <p  class="fs-1 fw-bold">{{ data.number }}</p>
                             </div>
                         </div>
                     </div>
@@ -26,16 +26,6 @@
                     <!-- <p class="h5 fw-bold">visitors Graph</p> -->
                     <WebChart />
 
-                    <div class="py-5 my-5">
-                        <!-- Recent posts table starts -->
-                        <h5 class=" py-2">Recent Articles</h5>
-
-                        <!-- DataTable Satrts -->
-                        <DataTable class="display" :columns="column" :data="data" :options="options" ref="table">
-                        </DataTable>
-
-                    </div>
-                    <!-- Recent posts table ends -->
                 </div>
 
 
@@ -77,9 +67,10 @@
   
 <script setup>
 
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import WebChart from '../dashboard/common/WebChart.vue';
-
+import { usepostStore } from '../../store/postStore';
+import { useblogCategory } from '../../store/blogCategory';
 
 
 
@@ -88,56 +79,72 @@ import DataTablesLib from 'datatables.net';
 import 'datatables.net-select';
 DataTable.use(DataTablesLib);
 
+const postStore = usepostStore();
+const categoryStore = useblogCategory();
 
-let dt;
-const table = ref();
 
-const column = [
-    { title: "SN", data: "Serial_number" },
-    { title: "Published Date", data: "date" },
-    { title: "Title", data: "title" },
-    { title: "Category", data: "category" },
-    { title: "Author", data: "author" },
-];
+onMounted(()=>{
+    postStore.readAllPosts()
+    categoryStore.readAllCategory()
+});
 
-const options = {
-    dom: "Blftipr", select: true, ordering: false, info: true
-};
 
-const data = [
-    { Serial_number: '1', date: '2023-1-2', title: 'Yoga', category: 'Self Improvement', author: 'Dr. Ramanand' },
-    { Serial_number: '2', date: '2023-1-21', title: 'Artificial Intelligence', category: 'AI', author: 'Mr.Alex' },
-    { Serial_number: '3', date: '2023-1-25', title: 'Spiritual Life', category: 'Self Improvement', author: 'SaadGuru' },
-    { Serial_number: '4', date: '2023-1-29', title: 'Family life', category: 'Family', author: 'Rupesh' },
-    { Serial_number: '5', date: '2023-2-1', title: 'About Nepal', category: 'Nation', author: 'Balen' },
-    { Serial_number: '6', date: '2023-2-10', title: 'Coding in Js', category: 'Programming', author: 'Mosh' },
-    { Serial_number: '7', date: '2023-2-14', title: 'Good Writing', category: 'Writing', author: 'Arjun' },
-    { Serial_number: '8', date: '2023-2-18', title: 'Coding Nicely', category: 'Programming', author: 'Harry' },
-    { Serial_number: '9', date: '2023-2--20', title: 'Politics Influence', category: 'Politics', author: 'Rajan' },
-    { Serial_number: '10', date: '2023-2-24', title: 'Introduction to ML', category: 'ML', author: 'Er.Carlo' },
-    { Serial_number: '11', date: '2023-2-28', title: 'Self Charging Battery', category: 'Technology', author: 'Harvely' },
-]
+
+const postCount = computed(()=>{
+    return postStore.postList.length
+})
+
+const categoryCount = computed(()=>categoryStore.categories.length)
+
+// let dt;
+// const table = ref();
+
+// const column = [
+//     { title: "SN", data: "Serial_number" },
+//     { title: "Published Date", data: "date" },
+//     { title: "Title", data: "title" },
+//     { title: "Category", data: "category" },
+//     { title: "Author", data: "author" },
+// ];
+
+// const options = {
+//     dom: "Blftipr", select: true, ordering: false, info: true
+// };
+
+// const data = [
+//     { Serial_number: '1', date: '2023-1-2', title: 'Yoga', category: 'Self Improvement', author: 'Dr. Ramanand' },
+//     { Serial_number: '2', date: '2023-1-21', title: 'Artificial Intelligence', category: 'AI', author: 'Mr.Alex' },
+//     { Serial_number: '3', date: '2023-1-25', title: 'Spiritual Life', category: 'Self Improvement', author: 'SaadGuru' },
+//     { Serial_number: '4', date: '2023-1-29', title: 'Family life', category: 'Family', author: 'Rupesh' },
+//     { Serial_number: '5', date: '2023-2-1', title: 'About Nepal', category: 'Nation', author: 'Balen' },
+//     { Serial_number: '6', date: '2023-2-10', title: 'Coding in Js', category: 'Programming', author: 'Mosh' },
+//     { Serial_number: '7', date: '2023-2-14', title: 'Good Writing', category: 'Writing', author: 'Arjun' },
+//     { Serial_number: '8', date: '2023-2-18', title: 'Coding Nicely', category: 'Programming', author: 'Harry' },
+//     { Serial_number: '9', date: '2023-2--20', title: 'Politics Influence', category: 'Politics', author: 'Rajan' },
+//     { Serial_number: '10', date: '2023-2-24', title: 'Introduction to ML', category: 'ML', author: 'Er.Carlo' },
+//     { Serial_number: '11', date: '2023-2-28', title: 'Self Charging Battery', category: 'Technology', author: 'Harvely' },
+// ]
 
 const cardData = [
     {
         image: 'https://cdn-icons-png.flaticon.com/512/2118/2118701.png',
         name: 'Subscribers',
-        number: '1000+'
+        number: '--'
     },
     {
         image: 'https://static.thenounproject.com/png/2818902-200.png',
         name: 'Posts',
-        number: '8+'
+        number: postCount
     },
     {
         image: 'https://cdn-icons-png.flaticon.com/512/3502/3502685.png',
         name: 'Category',
-        number: '50+'
+        number: categoryCount
     },
     {
         image: 'https://cdn-icons-png.flaticon.com/512/1380/1380338.png',
         name: 'Comments',
-        number: '200+'
+        number: '--'
     }
 ];
 

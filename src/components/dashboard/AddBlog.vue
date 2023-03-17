@@ -27,7 +27,7 @@
 
 
       <div class="col-lg-3 py-5 px-4" style="background-color: rgb(241, 243, 244);">
-        
+
         <form @submit.prevent>
           <div class="position-relative">
             <div class="alert alert-success position-absolute w-100" role="alert" v-if="successfullyAdded">Successfully
@@ -104,6 +104,7 @@ import { useblogCategory } from "../../store/blogCategory";
 
 
 
+
 // alert
 const successfullyAdded = ref(false);
 
@@ -144,8 +145,20 @@ function onFileChange(event) {
 function updateStore() {
 
   const postDataString = content.value.getHTML().replace(/(<([^>]+)>)/gi, "");
-  const reading_time = parseInt(postDataString.trim().split(/\s+/).length / 200);
-  
+  const reading_time = postDataString.trim().split(/\s+/).length * 60 / 200;
+  var time = '';
+
+  if (reading_time < 60) {
+    if (reading_time < 1) {
+      time = "Less than a second"
+    } else {
+      var current_time = parseInt(reading_time)
+      time = current_time.toString() + " sec"
+    }
+  } else {
+    var current_time = parseInt(reading_time / 60)
+    time = current_time.toString() + " min"
+  }
 
   const formData = new FormData();
   if (file.value.files == undefined) {
@@ -155,12 +168,12 @@ function updateStore() {
   formData.append('post_content', content.value.getHTML())
   formData.append('post_excerpt', content.value.getHTML().slice(0, 250))
   formData.append('category_name', category.value)
-  formData.append('reading_time', reading_time + " min")
+  formData.append('reading_time', time)
 
   // const updated
   for (const [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
+    console.log(key, value);
+  }
 
 
   let data = {

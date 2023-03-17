@@ -5,7 +5,7 @@
         <!-- content  -->
         <div v-for="(data,index) in postList" :key="index">
           <div class="d-flex flex-row">
-            <p>{{ data.post_date }}</p> &nbsp; || &nbsp; 
+            <p>{{ data.post_date }}</p> &nbsp; | &nbsp; 
             <p>{{ data.reading_time }}</p>
           </div>
           <h2 class="py-3">
@@ -15,12 +15,12 @@
             <img :src="data.post_image" style="width:100%">
           </div>
           <div class="content py-5">
-            <p>{{ data.post_content }}</p>
+            <p v-html="data.post_content"></p>
           </div>
         </div>
       </div>
       <div class="col-md-4 p-4 " style="top:6rem; height:0rem;">
-        <div class="h5 fw-bold">More from Pasal</div>
+        <div class="h5 fw-bold">Related Articles</div>
         <hr />
         <BlogHomeList :post="routeData"/>
       </div>

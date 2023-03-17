@@ -21,12 +21,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-flex flex-row gap-3">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link
                 to="/login"
                 class="nav-link btn btn-primary rounded-9 px-3 text-white"
               >LogIn</router-link>
-            </li>
+            </li> -->
 
             <form @submit.prevent="searchCategories">
               <div class="input-group position-relative">

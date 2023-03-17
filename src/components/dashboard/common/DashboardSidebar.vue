@@ -2,9 +2,9 @@
   <div>
     <!-- DashboardSidebar begins -->
     <div class="text-center">
-      <img class="pt-3 px-4"
-        src="https://static.vecteezy.com/system/resources/previews/001/192/065/original/circle-logo-turbine-png.png"
-        style="width: 80%" />
+      <img class="pt-3 px-2"
+        src="../../../assets/saajuzi.jpeg"
+        style="width: 100%; justify-content: center;" />
     </div>
     <div class="menu" style="padding-top: 3rem;">
       <hr>
