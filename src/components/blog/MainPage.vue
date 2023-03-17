@@ -10,7 +10,7 @@
         <!-- <BlogTrending /> -->
 
         <!-- // Blog Content List Section  -->
-        <BlogContent />
+        <Footer />
     </div>
         </template>
 
@@ -32,6 +32,6 @@ import BlogBanner from './main_page/BlogBanner.vue';
 // import BlogTrending from './main_page/BlogTrending.vue';
 
 // Blog Content List Section
-import BlogContent from './main_page/BlogContent.vue';
+import Footer from './main_page/Footer.vue';
 
 </script>

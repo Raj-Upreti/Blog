@@ -10,7 +10,8 @@
 
                 <!-- Primary Heading : Category Name -->
                 <div class="d-flex align-items-center mb-5">
-                    <div class="tag-icon me-2">
+
+                    <div v-if="!search" class="tag-icon me-2">
                         <i class="fa-solid fa-tag fs-5"></i>
                     </div>
                     <h2 class="fw-bold h1">{{ archiveName }}</h2>
@@ -25,8 +26,8 @@
                 <div class="text fw-semibold mb-3">
                     Explore Categories
                 </div>
-               <BlogCategoryMenu />
-                
+                <BlogCategoryMenu />
+
             </div>
             <!-- Cloumn Right End -->
         </div>
@@ -76,6 +77,7 @@ import BlogCategoryMenu from './main_page/BlogCategoryMenu.vue';
 const route = useRouter();
 const postStore = usepostStore();
 const categoryStore = useblogCategory();
+const search = ref(false)
 
 const routeData = ref(route.currentRoute.value.params.slug);
 
@@ -86,21 +88,22 @@ onMounted(() => {
 
 
 const archiveName = computed(() => {
-    if (route.currentRoute.value.name == 'search'){
-
+    if (route.currentRoute.value.name == 'search') {
+        search.value = true;
         return "Search Results for '" + route.currentRoute.value.params.slug + "'";
 
-    }else{
-    const data = categoryStore.categories.find((value, index) => {
-        if (value.slug == route.currentRoute.value.params.slug) {
-            return value.name
-        }
-    });
+    } else {
+        search.value = false;
+        const data = categoryStore.categories.find((value, index) => {
+            if (value.slug == route.currentRoute.value.params.slug) {
+                return value.name
+            }
+        });
 
-    if (data != undefined) {
-        return data.name
+        if (data != undefined) {
+            return data.name
+        }
     }
-}
 });
 
 // const categoryId = computed(() => route.params.id);

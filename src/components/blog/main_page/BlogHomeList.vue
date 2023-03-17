@@ -17,7 +17,7 @@
           <div
             class="h5 fw-bold mb-0"
             style="color:black;"
-          >{{ content.id }}. {{ content.post_title }}</div>
+          >{{ content.post_title }}</div>
 
           <p class="mb-1" style="color:rgba(117, 117, 117, 1);" v-html="content.post_content"></p>
         </router-link>

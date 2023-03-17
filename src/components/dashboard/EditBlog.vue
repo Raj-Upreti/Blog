@@ -144,18 +144,16 @@ onMounted(() => {
 });
 
 function onFileChange(event) {
-  // console.log(event);
-  file.value = event.target.files[0];
-  // console.log(file.value);
+    // console.log(event);
+    file.value = event.target.files[0];
+    // console.log(file.value);
 }
 
 function updateBlog() {
     const postId = route.params.id;
 
-
-
     const formData = new FormData();
-    if (file.value != null) {
+    if (file.value.files == undefined) {
         formData.append('post_image', file.value);
     }
     formData.append('post_title', title.value)
@@ -163,10 +161,7 @@ function updateBlog() {
     formData.append('post_excerpt', myEditorRef.value.getHTML().slice(0, 250))
     formData.append('category_name', category.value)
 
-    // const updated
-    for (const [key, value] of formData.entries()) {
-        console.log(key, value);
-    }
+
 
     axios.put(`/api/post/${postId}/`, formData)
         .then(res => {

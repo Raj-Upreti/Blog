@@ -116,8 +116,6 @@ var content = ref("");
 const file = ref(null);
 const category = ref("");
 
-
-
 const postStore = usepostStore();
 const categoryStore = useblogCategory();
 
@@ -139,27 +137,38 @@ const categoryList = computed(() => {
 });
 
 function onFileChange(event) {
-  // console.log(event);
   file.value = event.target.files[0];
-  // console.log(file.value);
 }
 
 function updateStore() {
 
+  const postDataString = content.value.getHTML().replace(/(<([^>]+)>)/gi, "");
+  const reading_time = parseInt(postDataString.trim().split(/\s+/).length / 200);
+  
+
   const formData = new FormData();
-  formData.append('post_image', file.value);
+  if (file.value.files == undefined) {
+    formData.append('post_image', file.value);
+  }
   formData.append('post_title', title.value)
   formData.append('post_content', content.value.getHTML())
-  formData.append('post_excerpt', content.value.getHTML().slice(0,250))
+  formData.append('post_excerpt', content.value.getHTML().slice(0, 250))
   formData.append('category_name', category.value)
-  
+  formData.append('reading_time', reading_time + " min")
+
+  // const updated
+  for (const [key, value] of formData.entries()) {
+        console.log(key, value);
+    }
+
+
   let data = {
     post_title: title.value,
     post_content: content.value.getHTML(),
     post_excerpt: content.value.getHTML().slice(0, 250),
     category_name: category.value,
   };
-  
+
 
   //   this need to be solved
   if (

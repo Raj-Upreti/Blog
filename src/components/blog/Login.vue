@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-3">
                     <div class="text-center position-relative">
-                        <img src="../assets/logo.webp" alt="logo of a company" style="width:10%" class="my-3" />
+                        <!-- <img src="../assets/logo.webp" alt="logo of a company" style="width:10%" class="my-3" /> -->
                         <h3>Hello Again</h3>
                         <p class="text-muted">Welcome heroes please login to continue</p>
 
@@ -59,7 +59,7 @@
                         <button type="submit" class="btn btn-primary btn-lg btn-block" @click="userLogin">Sign in</button>
                         <div class="py-2 d-flex justify-content-center">
                             <button class="text-muted btn w-100 mt-4 bg-light">
-                                <img src="../assets/google.webp" style="width:5%;" alt="google logo" class="me-1" />
+                                <!-- <img src="../assets/google.webp" style="width:5%;" alt="google logo" class="me-1" /> -->
                                 Sign in with Google
                             </button>
                         </div>
