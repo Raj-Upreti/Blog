@@ -4,12 +4,12 @@
         <div class="container py-5 h-100">
             <div class="row d-flex align-items-center justify-content-center h-100">
                 <div class="col-md-8 col-lg-7 col-xl-6">
-                    <img src="https://img.freepik.com/free-vector/accountants-work-with-financial-transactions-software-tablet-enterprise-accounting-it-accounting-system-smart-enterprise-tools-concept-illustration_335657-2101.jpg?w=2000"
-                        class="img-fluid" alt="Phone image" />
+                    <!-- <img src="https://img.freepik.com/free-vector/accountants-work-with-financial-transactions-software-tablet-enterprise-accounting-it-accounting-system-smart-enterprise-tools-concept-illustration_335657-2101.jpg?w=2000"
+                        class="img-fluid" alt="Phone image" /> -->
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 p-3">
                     <div class="text-center position-relative">
-                        <img src="../assets/logo.webp" alt="logo of a company" style="width:10%" class="my-3" />
+                        <!-- <img src="../assets/logo.webp" alt="logo of a company" style="width:10%" class="my-3" /> -->
                         <h3>Hello Again</h3>
                         <p class="text-muted">Welcome heroes please login to continue</p>
 
