@@ -59,7 +59,7 @@
                         <button type="submit" class="btn btn-primary btn-lg btn-block" @click="userLogin">Sign in</button>
                         <div class="py-2 d-flex justify-content-center">
                             <button class="text-muted btn w-100 mt-4 bg-light">
-                                <img src="../assets/google.webp" style="width:5%;" alt="google logo" class="me-1" />
+                                <!-- <img src="../assets/google.webp" style="width:5%;" alt="google logo" class="me-1" /> -->
                                 Sign in with Google
                             </button>
                         </div>
