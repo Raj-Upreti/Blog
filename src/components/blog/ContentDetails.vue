@@ -12,7 +12,7 @@
             {{ data.post_title }}
           </h2>
           <div class="img">
-            <img :src="data.post_image" style="width:100%">
+            <img :src="data.post_image" style="width:100%;">
           </div>
           <div class="content py-5">
             <p v-html="data.post_content"></p>
@@ -65,39 +65,39 @@ onMounted(() => {
 
 console.log(postStore.readAllPosts());
 
-const blogs = [
-  {
-    author: "Mark Schaefer",
-    title: "I just earned my first revenue from ChatGPT and other observations",
-    image: "https://miro.medium.com/focal/112/112/50/50/0*6eHeV5x8tWLdiYpV.png"
-  },
+// const blogs = [
+//   {
+//     author: "Mark Schaefer",
+//     title: "I just earned my first revenue from ChatGPT and other observations",
+//     image: "https://miro.medium.com/focal/112/112/50/50/0*6eHeV5x8tWLdiYpV.png"
+//   },
 
-  {
-    author: "Josep Ferrer",
-    title: "5 ChatGPT features to boost your daily work",
-    image:
-      "https://miro.medium.com/focal/112/112/50/50/1*XiVzB765eBip73jVQiAxkA.png"
-  },
+//   {
+//     author: "Josep Ferrer",
+//     title: "5 ChatGPT features to boost your daily work",
+//     image:
+//       "https://miro.medium.com/focal/112/112/50/50/1*XiVzB765eBip73jVQiAxkA.png"
+//   },
 
-  {
-    author: "Enda",
-    title: "12 AI Websites That Will Blow Your Mind",
-    image: "https://miro.medium.com/focal/112/112/50/50/0*Ei3h_oQl4R7yKmTE"
-  },
+//   {
+//     author: "Enda",
+//     title: "12 AI Websites That Will Blow Your Mind",
+//     image: "https://miro.medium.com/focal/112/112/50/50/0*Ei3h_oQl4R7yKmTE"
+//   },
 
-  {
-    author: "The PyCoach",
-    title: "3 ChatGPT Extensions to Automate Your Life",
-    image:
-      "https://miro.medium.com/focal/112/112/50/50/1*jBqAOsjmedJVHwGbyP5PTw.jpeg"
-  },
+//   {
+//     author: "The PyCoach",
+//     title: "3 ChatGPT Extensions to Automate Your Life",
+//     image:
+//       "https://miro.medium.com/focal/112/112/50/50/1*jBqAOsjmedJVHwGbyP5PTw.jpeg"
+//   },
 
-  {
-    author: "Ryan Holiday",
-    title: "If You Only Read A Few Books In 2023, Read These",
-    image: "https://miro.medium.com/focal/112/112/50/50/0*6h0h300r6FqggzRq"
-  }
-];
+//   {
+//     author: "Ryan Holiday",
+//     title: "If You Only Read A Few Books In 2023, Read These",
+//     image: "https://miro.medium.com/focal/112/112/50/50/0*6h0h300r6FqggzRq"
+//   }
+// ];
 </script>
 
 <style scoped>
